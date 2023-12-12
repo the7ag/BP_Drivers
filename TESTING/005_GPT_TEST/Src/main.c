@@ -28,18 +28,17 @@ int main(void)
 	MCAL_RCC_InitSysClock();
 	MCAL_Rcc_EnablePrephiral(RCC_APB2_TIM1EN, RCC_APB2);
 	MCAL_Rcc_EnablePrephiral(RCC_APB2_IOPAEN, RCC_APB2);
-	MCAL_Rcc_EnablePrephiral(RCC_APB2_AFIOEN, RCC_APB2);
-	MCAL_GPIO_SetPinMode(GPIO_PORTA, GPIO_PIN8, GPIO_OUTPUT_HIGH_SPEED_AF_PP);
+	MCAL_GPIO_SetPinMode(GPIO_PORTA, GPIO_PIN1, GPIO_OUTPUT_LOW_SPEED_PUSHPULL);
 	/*TIM 2 INIT*/
-	GPT_Config_t Tim1_Config={1000,DOWNCounter,Edge_AllignedMode,DIV_1,Enable_Arr_Buffer,GPT_Enaple_Interrupt};
+	GPT_Config_t Tim1_Config={1000,UPCounter,Edge_AllignedMode,DIV_1,Enable_Arr_Buffer,GPT_Enaple_Interrupt};
 	GPT_TIMx_init(TIM1,&Tim1_Config);
-	GPT_PWM_Config_t CH1_CONFIG={1000,TIM_Channel1,1000,PWM_11};
-	GPT_PWM_INIT(TIM1, &CH1_CONFIG);
-	GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, 10);
+	GPT_TIMx_SetPreScalar(TIM1,35999);
     /* Loop forever */
 	for(;;)
 	{
-		//GPT_TIMx_SetBusyWait(TIM1, 65535, 1);
-		//GPT_TIMx_SetBusyWait(TIM1, 65535, 1);
+		MCAL_GPIO_SetPinValue(GPIO_PORTA, GPIO_PIN1, GPIO_HIGH);
+		GPT_TIMx_SetBusyWait(TIM1, 1000, 1);
+		MCAL_GPIO_SetPinValue(GPIO_PORTA, GPIO_PIN1, GPIO_LOW);
+		GPT_TIMx_SetBusyWait(TIM1, 1000, 1);
 	}
 }

@@ -197,9 +197,9 @@ Std_ReturnType GPT_TIMx_SetBusyWait(u8 Copy_TIMx,u16 Copy_Ticks , u16 Copy_TickT
     TIM[Copy_TIMx]->ARR = (u16)(Copy_Ticks * Copy_TickType);
     CLR_BIT( TIM[Copy_TIMx]->DIER , TIMX_DIER_UIE);
     SET_BIT( TIM[Copy_TIMx]->CR1 , TIMX_CR1_CEN );
-    while(TIM[Copy_TIMx]->CNT != TIM[Copy_TIMx]->ARR);
+    while(TIM[Copy_TIMx]->CNT != (TIM[Copy_TIMx]->ARR)-1);
     TIM[Copy_TIMx]->CNT =0;
-    CLR_BIT( TIM[Copy_TIMx]->CR1 , TIMX_CR1_CEN );
+    CLR_BIT(TIM[Copy_TIMx]->CR1,TIMX_CR1_CEN);
     TIM[Copy_TIMx]->ARR = 0;
     local_functionStates = E_OK;
     return local_functionStates;
