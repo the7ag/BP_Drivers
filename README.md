@@ -67,5 +67,3 @@ This repository contains driver libraries for various peripherals of the STM32F1
 Contributions are welcome! If you'd like to improve these drivers or add support for additional peripherals, feel free to submit a pull request.
 
 ---
-
-Feel free to customize the README according to your specific driver implementations and structure. This template provides a general outline for showcasing the drivers along with their testing procedures.
