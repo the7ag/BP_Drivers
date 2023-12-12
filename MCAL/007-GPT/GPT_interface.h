@@ -15,12 +15,12 @@
  */
 #ifndef GPT_INTERFACE_H_
 #define GPT_INTERFACE_H_
-/*Timer Difnition*/
+/*Timer Definition*/
 #define TIM1    0
 #define TIM2    1
 #define TIM3    2
 #define TIM4    3
-
+/*Timer mode Definition*/
 #define TIM_SINGLE_INTERVAL_MODE    0
 #define TIM_PERIODIC_INTERVAL_MODE  1
 
