@@ -15,7 +15,7 @@
  */
 #ifndef GPT_INTERFACE_H_
 #define GPT_INTERFACE_H_
-
+/*Timer Difnition*/
 #define TIM1    0
 #define TIM2    1
 #define TIM3    2
