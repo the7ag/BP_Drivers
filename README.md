@@ -1,8 +1,7 @@
 # STM32F103C8 Drivers
 
 This repository contains driver libraries for various peripherals of the STM32F103C8 microcontroller, along with testing examples for each driver.
-![stm32f103c8t6_pinout_voltage01](https://github.com/MuteMotion/BP_Drivers/assets/95578914/4e302b99-5599-47bf-9607-32f4cea1fda7)
-
+![0_r7Y5Z7LXcx2Bmy3f](https://github.com/MuteMotion/BP_Drivers/assets/95578914/839d0bd5-5a56-4b53-b7e1-2ce71a2d7127)
 
 ## Supported Drivers
 
@@ -59,7 +58,7 @@ This repository contains driver libraries for various peripherals of the STM32F1
 ## Usage
 1. Clone the repository:
    ```
-   git clone [https://github.com/yourusername/STM32F103C8-Drivers.git](https://github.com/MuteMotion/BP_Drivers.git)
+   git clone https://github.com/MuteMotion/BP_Drivers.git
    ```
 2. Include the required driver files in your STM32 project.
 3. Use the respective test files as a reference to understand and implement driver functionalities in your application.
