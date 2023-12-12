@@ -1,0 +1,7 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "gpio_private.h": "c",
+        "gpio_interface.h": "c"
+    }
+}

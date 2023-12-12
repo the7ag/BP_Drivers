@@ -1,0 +1,9 @@
+../Src/NVIC_program.c:25:16:MCAL_NVIC_EnableIRQ	24	static
+../Src/NVIC_program.c:52:16:MCAL_NVIC_DisableIRQ	24	static
+../Src/NVIC_program.c:79:16:MCAL_NVIC_SetPendingIRQ	24	static
+../Src/NVIC_program.c:106:16:MCAL_NVIC_ClearPendingIRQ	24	static
+../Src/NVIC_program.c:133:16:MCAL_NVIC_GetPendingIRQ	24	static
+../Src/NVIC_program.c:160:16:MCAL_NVIC_GetActiveIRQ	24	static
+../Src/NVIC_program.c:186:16:MCAL_NVIC_xSetPriority	24	static
+../Src/NVIC_program.c:205:16:MCAL_NVIC_vSetPriority	24	static
+../Src/NVIC_program.c:246:16:MCAL_NVIC_GetPriority	24	static

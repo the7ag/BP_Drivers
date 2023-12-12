@@ -1,0 +1,9 @@
+NVIC_program.c:25:16:MCAL_NVIC_EnableIRQ	6
+NVIC_program.c:51:16:MCAL_NVIC_DisableIRQ	6
+NVIC_program.c:78:16:MCAL_NVIC_SetPendingIRQ	6
+NVIC_program.c:105:16:MCAL_NVIC_ClearPendingIRQ	6
+NVIC_program.c:132:16:MCAL_NVIC_GetPendingIRQ	6
+NVIC_program.c:159:16:MCAL_NVIC_GetActiveIRQ	6
+NVIC_program.c:185:16:MCAL_NVIC_xSetPriority	3
+NVIC_program.c:204:16:MCAL_NVIC_vSetPriority	4
+NVIC_program.c:245:16:MCAL_NVIC_GetPriority	1

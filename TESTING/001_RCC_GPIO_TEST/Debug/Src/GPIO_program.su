@@ -1,0 +1,6 @@
+../Src/GPIO_program.c:16:16:Mcal_GPIO_SetPinMode	24	static
+../Src/GPIO_program.c:79:16:Mcal_GPIO_SetPinValue	24	static
+../Src/GPIO_program.c:139:16:Mcal_GPIO_GetPinValue	24	static
+../Src/GPIO_program.c:169:16:Mcal_GPIO_AtomicSetPin	24	static
+../Src/GPIO_program.c:193:16:Mcal_GPIO_AtomicResetPin	24	static
+../Src/GPIO_program.c:218:16:Mcal_GPIO_LCKPin	24	static

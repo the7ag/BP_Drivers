@@ -1,0 +1,608 @@
+
+NVIC_TEST.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000130  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         000002f4  08000130  08000130  00010130  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  08000424  0800042c  0001042c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  08000424  08000424  0001042c  2**0
+                  CONTENTS
+  4 .ARM          00000000  08000424  08000424  0001042c  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  08000424  0800042c  0001042c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  08000424  08000424  00010424  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  7 .fini_array   00000004  08000428  08000428  00010428  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  8 .data         00000000  20000000  20000000  0001042c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .bss          0000001c  20000000  0800042c  00020000  2**2
+                  ALLOC
+ 10 ._user_heap_stack 00000604  2000001c  0800042c  0002001c  2**0
+                  ALLOC
+ 11 .ARM.attributes 00000029  00000000  00000000  0001042c  2**0
+                  CONTENTS, READONLY
+ 12 .debug_info   0000098a  00000000  00000000  00010455  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .debug_abbrev 000002fc  00000000  00000000  00010ddf  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_aranges 00000180  00000000  00000000  000110e0  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_ranges 00000138  00000000  00000000  00011260  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_macro  0000071c  00000000  00000000  00011398  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_line   0000092c  00000000  00000000  00011ab4  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_str    00004b97  00000000  00000000  000123e0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .comment      00000050  00000000  00000000  00016f77  2**0
+                  CONTENTS, READONLY
+ 20 .debug_frame  00000520  00000000  00000000  00016fc8  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000130 <__do_global_dtors_aux>:
+ 8000130:	b510      	push	{r4, lr}
+ 8000132:	4c05      	ldr	r4, [pc, #20]	; (8000148 <__do_global_dtors_aux+0x18>)
+ 8000134:	7823      	ldrb	r3, [r4, #0]
+ 8000136:	b933      	cbnz	r3, 8000146 <__do_global_dtors_aux+0x16>
+ 8000138:	4b04      	ldr	r3, [pc, #16]	; (800014c <__do_global_dtors_aux+0x1c>)
+ 800013a:	b113      	cbz	r3, 8000142 <__do_global_dtors_aux+0x12>
+ 800013c:	4804      	ldr	r0, [pc, #16]	; (8000150 <__do_global_dtors_aux+0x20>)
+ 800013e:	f3af 8000 	nop.w
+ 8000142:	2301      	movs	r3, #1
+ 8000144:	7023      	strb	r3, [r4, #0]
+ 8000146:	bd10      	pop	{r4, pc}
+ 8000148:	20000000 	.word	0x20000000
+ 800014c:	00000000 	.word	0x00000000
+ 8000150:	0800040c 	.word	0x0800040c
+
+08000154 <frame_dummy>:
+ 8000154:	b508      	push	{r3, lr}
+ 8000156:	4b03      	ldr	r3, [pc, #12]	; (8000164 <frame_dummy+0x10>)
+ 8000158:	b11b      	cbz	r3, 8000162 <frame_dummy+0xe>
+ 800015a:	4903      	ldr	r1, [pc, #12]	; (8000168 <frame_dummy+0x14>)
+ 800015c:	4803      	ldr	r0, [pc, #12]	; (800016c <frame_dummy+0x18>)
+ 800015e:	f3af 8000 	nop.w
+ 8000162:	bd08      	pop	{r3, pc}
+ 8000164:	00000000 	.word	0x00000000
+ 8000168:	20000004 	.word	0x20000004
+ 800016c:	0800040c 	.word	0x0800040c
+
+08000170 <MCAL_NVIC_EnableIRQ>:
+#include "NVIC_interface.h"
+#include "NVIC_private.h"
+#include "NVIC_config.h"
+/*====================================================   Start_FUNCTION   ====================================================*/
+Std_ReturnType MCAL_NVIC_EnableIRQ(IRQn_Type Copy_IRQn)
+{
+ 8000170:	b480      	push	{r7}
+ 8000172:	b085      	sub	sp, #20
+ 8000174:	af00      	add	r7, sp, #0
+ 8000176:	4603      	mov	r3, r0
+ 8000178:	71fb      	strb	r3, [r7, #7]
+    Std_ReturnType Local_FunctionStatus = E_NOT_OK;
+ 800017a:	2300      	movs	r3, #0
+ 800017c:	73fb      	strb	r3, [r7, #15]
+    if( Copy_IRQn >= NVIC_WWDG_IRQn && Copy_IRQn <= NVIC_I2C1_EV_IRQn)
+ 800017e:	79fb      	ldrb	r3, [r7, #7]
+ 8000180:	2b1f      	cmp	r3, #31
+ 8000182:	d807      	bhi.n	8000194 <MCAL_NVIC_EnableIRQ+0x24>
+    {
+        NVIC_ISER0 = (1 << Copy_IRQn);
+ 8000184:	79fb      	ldrb	r3, [r7, #7]
+ 8000186:	2201      	movs	r2, #1
+ 8000188:	409a      	lsls	r2, r3
+ 800018a:	4b15      	ldr	r3, [pc, #84]	; (80001e0 <MCAL_NVIC_EnableIRQ+0x70>)
+ 800018c:	601a      	str	r2, [r3, #0]
+        Local_FunctionStatus=E_OK;
+ 800018e:	2301      	movs	r3, #1
+ 8000190:	73fb      	strb	r3, [r7, #15]
+ 8000192:	e01f      	b.n	80001d4 <MCAL_NVIC_EnableIRQ+0x64>
+    }
+    else if ( Copy_IRQn >= NVIC_I2C1_ER_IRQn && Copy_IRQn <= 63)
+ 8000194:	79fb      	ldrb	r3, [r7, #7]
+ 8000196:	2b1f      	cmp	r3, #31
+ 8000198:	d90b      	bls.n	80001b2 <MCAL_NVIC_EnableIRQ+0x42>
+ 800019a:	79fb      	ldrb	r3, [r7, #7]
+ 800019c:	2b3f      	cmp	r3, #63	; 0x3f
+ 800019e:	d808      	bhi.n	80001b2 <MCAL_NVIC_EnableIRQ+0x42>
+    {
+        NVIC_ISER1 = (1 << (Copy_IRQn-32));
+ 80001a0:	79fb      	ldrb	r3, [r7, #7]
+ 80001a2:	3b20      	subs	r3, #32
+ 80001a4:	2201      	movs	r2, #1
+ 80001a6:	409a      	lsls	r2, r3
+ 80001a8:	4b0e      	ldr	r3, [pc, #56]	; (80001e4 <MCAL_NVIC_EnableIRQ+0x74>)
+ 80001aa:	601a      	str	r2, [r3, #0]
+        Local_FunctionStatus=E_OK;
+ 80001ac:	2301      	movs	r3, #1
+ 80001ae:	73fb      	strb	r3, [r7, #15]
+ 80001b0:	e010      	b.n	80001d4 <MCAL_NVIC_EnableIRQ+0x64>
+    }
+    else if(Copy_IRQn >= 64 && Copy_IRQn <= 67)
+ 80001b2:	79fb      	ldrb	r3, [r7, #7]
+ 80001b4:	2b3f      	cmp	r3, #63	; 0x3f
+ 80001b6:	d90b      	bls.n	80001d0 <MCAL_NVIC_EnableIRQ+0x60>
+ 80001b8:	79fb      	ldrb	r3, [r7, #7]
+ 80001ba:	2b43      	cmp	r3, #67	; 0x43
+ 80001bc:	d808      	bhi.n	80001d0 <MCAL_NVIC_EnableIRQ+0x60>
+    {
+        NVIC_ISER2 = (1 << (Copy_IRQn-64));
+ 80001be:	79fb      	ldrb	r3, [r7, #7]
+ 80001c0:	3b40      	subs	r3, #64	; 0x40
+ 80001c2:	2201      	movs	r2, #1
+ 80001c4:	409a      	lsls	r2, r3
+ 80001c6:	4b08      	ldr	r3, [pc, #32]	; (80001e8 <MCAL_NVIC_EnableIRQ+0x78>)
+ 80001c8:	601a      	str	r2, [r3, #0]
+        Local_FunctionStatus=E_OK;
+ 80001ca:	2301      	movs	r3, #1
+ 80001cc:	73fb      	strb	r3, [r7, #15]
+ 80001ce:	e001      	b.n	80001d4 <MCAL_NVIC_EnableIRQ+0x64>
+    }else
+    {
+        Local_FunctionStatus = E_NOT_OK;
+ 80001d0:	2300      	movs	r3, #0
+ 80001d2:	73fb      	strb	r3, [r7, #15]
+    }
+    return Local_FunctionStatus;
+ 80001d4:	7bfb      	ldrb	r3, [r7, #15]
+}
+ 80001d6:	4618      	mov	r0, r3
+ 80001d8:	3714      	adds	r7, #20
+ 80001da:	46bd      	mov	sp, r7
+ 80001dc:	bc80      	pop	{r7}
+ 80001de:	4770      	bx	lr
+ 80001e0:	e000e100 	.word	0xe000e100
+ 80001e4:	e000e104 	.word	0xe000e104
+ 80001e8:	e000e108 	.word	0xe000e108
+
+080001ec <MCAL_NVIC_DisableIRQ>:
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
+
+Std_ReturnType MCAL_NVIC_DisableIRQ(IRQn_Type Copy_IRQn)
+{
+ 80001ec:	b480      	push	{r7}
+ 80001ee:	b085      	sub	sp, #20
+ 80001f0:	af00      	add	r7, sp, #0
+ 80001f2:	4603      	mov	r3, r0
+ 80001f4:	71fb      	strb	r3, [r7, #7]
+    Std_ReturnType Local_FunctionStatus = E_NOT_OK;
+ 80001f6:	2300      	movs	r3, #0
+ 80001f8:	73fb      	strb	r3, [r7, #15]
+    if( Copy_IRQn >= NVIC_WWDG_IRQn && Copy_IRQn <= NVIC_I2C1_EV_IRQn)
+ 80001fa:	79fb      	ldrb	r3, [r7, #7]
+ 80001fc:	2b1f      	cmp	r3, #31
+ 80001fe:	d807      	bhi.n	8000210 <MCAL_NVIC_DisableIRQ+0x24>
+    {
+        NVIC_ICER0 = (1 << Copy_IRQn);
+ 8000200:	79fb      	ldrb	r3, [r7, #7]
+ 8000202:	2201      	movs	r2, #1
+ 8000204:	409a      	lsls	r2, r3
+ 8000206:	4b15      	ldr	r3, [pc, #84]	; (800025c <MCAL_NVIC_DisableIRQ+0x70>)
+ 8000208:	601a      	str	r2, [r3, #0]
+        Local_FunctionStatus=E_OK;
+ 800020a:	2301      	movs	r3, #1
+ 800020c:	73fb      	strb	r3, [r7, #15]
+ 800020e:	e01f      	b.n	8000250 <MCAL_NVIC_DisableIRQ+0x64>
+    }
+    else if ( Copy_IRQn >= NVIC_I2C1_ER_IRQn && Copy_IRQn <= 63)
+ 8000210:	79fb      	ldrb	r3, [r7, #7]
+ 8000212:	2b1f      	cmp	r3, #31
+ 8000214:	d90b      	bls.n	800022e <MCAL_NVIC_DisableIRQ+0x42>
+ 8000216:	79fb      	ldrb	r3, [r7, #7]
+ 8000218:	2b3f      	cmp	r3, #63	; 0x3f
+ 800021a:	d808      	bhi.n	800022e <MCAL_NVIC_DisableIRQ+0x42>
+    {
+        NVIC_ICER1 = (1 << (Copy_IRQn-32));
+ 800021c:	79fb      	ldrb	r3, [r7, #7]
+ 800021e:	3b20      	subs	r3, #32
+ 8000220:	2201      	movs	r2, #1
+ 8000222:	409a      	lsls	r2, r3
+ 8000224:	4b0e      	ldr	r3, [pc, #56]	; (8000260 <MCAL_NVIC_DisableIRQ+0x74>)
+ 8000226:	601a      	str	r2, [r3, #0]
+        Local_FunctionStatus=E_OK;
+ 8000228:	2301      	movs	r3, #1
+ 800022a:	73fb      	strb	r3, [r7, #15]
+ 800022c:	e010      	b.n	8000250 <MCAL_NVIC_DisableIRQ+0x64>
+
+    }
+    else if(Copy_IRQn >= 64 && Copy_IRQn <= 67)
+ 800022e:	79fb      	ldrb	r3, [r7, #7]
+ 8000230:	2b3f      	cmp	r3, #63	; 0x3f
+ 8000232:	d90b      	bls.n	800024c <MCAL_NVIC_DisableIRQ+0x60>
+ 8000234:	79fb      	ldrb	r3, [r7, #7]
+ 8000236:	2b43      	cmp	r3, #67	; 0x43
+ 8000238:	d808      	bhi.n	800024c <MCAL_NVIC_DisableIRQ+0x60>
+    {
+        NVIC_ICER2 = (1 << (Copy_IRQn-64));
+ 800023a:	79fb      	ldrb	r3, [r7, #7]
+ 800023c:	3b40      	subs	r3, #64	; 0x40
+ 800023e:	2201      	movs	r2, #1
+ 8000240:	409a      	lsls	r2, r3
+ 8000242:	4b08      	ldr	r3, [pc, #32]	; (8000264 <MCAL_NVIC_DisableIRQ+0x78>)
+ 8000244:	601a      	str	r2, [r3, #0]
+        Local_FunctionStatus=E_OK;
+ 8000246:	2301      	movs	r3, #1
+ 8000248:	73fb      	strb	r3, [r7, #15]
+ 800024a:	e001      	b.n	8000250 <MCAL_NVIC_DisableIRQ+0x64>
+    }else
+    {
+        Local_FunctionStatus = E_NOT_OK;
+ 800024c:	2300      	movs	r3, #0
+ 800024e:	73fb      	strb	r3, [r7, #15]
+    }
+    return Local_FunctionStatus;
+ 8000250:	7bfb      	ldrb	r3, [r7, #15]
+}
+ 8000252:	4618      	mov	r0, r3
+ 8000254:	3714      	adds	r7, #20
+ 8000256:	46bd      	mov	sp, r7
+ 8000258:	bc80      	pop	{r7}
+ 800025a:	4770      	bx	lr
+ 800025c:	e000e180 	.word	0xe000e180
+ 8000260:	e000e184 	.word	0xe000e184
+ 8000264:	e000e188 	.word	0xe000e188
+
+08000268 <MCAL_NVIC_xSetPriority>:
+}
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
+
+Std_ReturnType MCAL_NVIC_xSetPriority(IRQn_Type Copy_IRQn , u32 Copy_Priority)
+{
+ 8000268:	b580      	push	{r7, lr}
+ 800026a:	b084      	sub	sp, #16
+ 800026c:	af00      	add	r7, sp, #0
+ 800026e:	4603      	mov	r3, r0
+ 8000270:	6039      	str	r1, [r7, #0]
+ 8000272:	71fb      	strb	r3, [r7, #7]
+    Std_ReturnType Local_FunctionStatus = E_NOT_OK;
+ 8000274:	2300      	movs	r3, #0
+ 8000276:	73fb      	strb	r3, [r7, #15]
+    if (Copy_IRQn < NUMBER_OF_INTERRUPTS && Copy_Priority <= MAX_PRIORITY)
+ 8000278:	79fb      	ldrb	r3, [r7, #7]
+ 800027a:	2b3b      	cmp	r3, #59	; 0x3b
+ 800027c:	d818      	bhi.n	80002b0 <MCAL_NVIC_xSetPriority+0x48>
+ 800027e:	683b      	ldr	r3, [r7, #0]
+ 8000280:	2b0f      	cmp	r3, #15
+ 8000282:	d815      	bhi.n	80002b0 <MCAL_NVIC_xSetPriority+0x48>
+    {
+        NVIC_IPR_Base_Address[Copy_IRQn / 4] = ((Copy_Priority << ((Copy_IRQn % 4)*8))<<4) ;
+ 8000284:	79fb      	ldrb	r3, [r7, #7]
+ 8000286:	f003 0303 	and.w	r3, r3, #3
+ 800028a:	00db      	lsls	r3, r3, #3
+ 800028c:	683a      	ldr	r2, [r7, #0]
+ 800028e:	409a      	lsls	r2, r3
+ 8000290:	79fb      	ldrb	r3, [r7, #7]
+ 8000292:	089b      	lsrs	r3, r3, #2
+ 8000294:	b2db      	uxtb	r3, r3
+ 8000296:	009b      	lsls	r3, r3, #2
+ 8000298:	f103 4360 	add.w	r3, r3, #3758096384	; 0xe0000000
+ 800029c:	f503 4364 	add.w	r3, r3, #58368	; 0xe400
+ 80002a0:	0112      	lsls	r2, r2, #4
+ 80002a2:	601a      	str	r2, [r3, #0]
+        MCAL_SCB_SetPriorityGrouping(NVIC_0GROUP_16SUB);
+ 80002a4:	4806      	ldr	r0, [pc, #24]	; (80002c0 <MCAL_NVIC_xSetPriority+0x58>)
+ 80002a6:	f000 f83d 	bl	8000324 <MCAL_SCB_SetPriorityGrouping>
+        Local_FunctionStatus = E_OK;
+ 80002aa:	2301      	movs	r3, #1
+ 80002ac:	73fb      	strb	r3, [r7, #15]
+ 80002ae:	e001      	b.n	80002b4 <MCAL_NVIC_xSetPriority+0x4c>
+    }
+    else
+    {
+        Local_FunctionStatus = E_NOT_OK;
+ 80002b0:	2300      	movs	r3, #0
+ 80002b2:	73fb      	strb	r3, [r7, #15]
+    }
+    
+    return Local_FunctionStatus;
+ 80002b4:	7bfb      	ldrb	r3, [r7, #15]
+}
+ 80002b6:	4618      	mov	r0, r3
+ 80002b8:	3710      	adds	r7, #16
+ 80002ba:	46bd      	mov	sp, r7
+ 80002bc:	bd80      	pop	{r7, pc}
+ 80002be:	bf00      	nop
+ 80002c0:	05fa0700 	.word	0x05fa0700
+
+080002c4 <Mcal_RCC_InitSysClock>:
+#include "RCC_private.h"
+#include "RCC_config.h"
+#include "RCC_interface.h"
+/*====================================================   Start_FUNCTION   ====================================================*/
+Std_ReturnType Mcal_RCC_InitSysClock(void)
+{
+ 80002c4:	b480      	push	{r7}
+ 80002c6:	b083      	sub	sp, #12
+ 80002c8:	af00      	add	r7, sp, #0
+    Std_ReturnType local_functionStates = E_NOT_OK;
+ 80002ca:	2300      	movs	r3, #0
+ 80002cc:	71fb      	strb	r3, [r7, #7]
+        CLR_BIT( RCC_CFGR , 1 );
+        local_functionStates = E_OK;
+    #elif RCC_SYSCLK == RCC_HSE
+        /* Select Which extrnal source for the Extrnal clock */
+    	#if RCC_CLK_BP == RCC_CRYSTAL_CLK_
+            CLR_BIT(RCC_CR , RCC_CR_HSEBYP);  
+ 80002ce:	4b13      	ldr	r3, [pc, #76]	; (800031c <Mcal_RCC_InitSysClock+0x58>)
+ 80002d0:	681b      	ldr	r3, [r3, #0]
+ 80002d2:	4a12      	ldr	r2, [pc, #72]	; (800031c <Mcal_RCC_InitSysClock+0x58>)
+ 80002d4:	f423 2380 	bic.w	r3, r3, #262144	; 0x40000
+ 80002d8:	6013      	str	r3, [r2, #0]
+            SET_BIT(RCC_CR , RCC_CR_HSEBYP);  
+        #else
+            #error "Wrong Choice !!"
+        #endif /* RCC_CLK_BP */
+        /* Enable */
+        SET_BIT( RCC_CR , RCC_CR_HSEON); 
+ 80002da:	4b10      	ldr	r3, [pc, #64]	; (800031c <Mcal_RCC_InitSysClock+0x58>)
+ 80002dc:	681b      	ldr	r3, [r3, #0]
+ 80002de:	4a0f      	ldr	r2, [pc, #60]	; (800031c <Mcal_RCC_InitSysClock+0x58>)
+ 80002e0:	f443 3380 	orr.w	r3, r3, #65536	; 0x10000
+ 80002e4:	6013      	str	r3, [r2, #0]
+        /* Wait until the clock is stable */
+        while( !GET_BIT(RCC_CR , RCC_CR_HSERDY) );
+ 80002e6:	bf00      	nop
+ 80002e8:	4b0c      	ldr	r3, [pc, #48]	; (800031c <Mcal_RCC_InitSysClock+0x58>)
+ 80002ea:	681b      	ldr	r3, [r3, #0]
+ 80002ec:	f403 3300 	and.w	r3, r3, #131072	; 0x20000
+ 80002f0:	2b00      	cmp	r3, #0
+ 80002f2:	d0f9      	beq.n	80002e8 <Mcal_RCC_InitSysClock+0x24>
+        /* Select HSE As system CLOCK */
+        SET_BIT( RCC_CFGR , 0);
+ 80002f4:	4b0a      	ldr	r3, [pc, #40]	; (8000320 <Mcal_RCC_InitSysClock+0x5c>)
+ 80002f6:	681b      	ldr	r3, [r3, #0]
+ 80002f8:	4a09      	ldr	r2, [pc, #36]	; (8000320 <Mcal_RCC_InitSysClock+0x5c>)
+ 80002fa:	f043 0301 	orr.w	r3, r3, #1
+ 80002fe:	6013      	str	r3, [r2, #0]
+        CLR_BIT( RCC_CFGR , 1);
+ 8000300:	4b07      	ldr	r3, [pc, #28]	; (8000320 <Mcal_RCC_InitSysClock+0x5c>)
+ 8000302:	681b      	ldr	r3, [r3, #0]
+ 8000304:	4a06      	ldr	r2, [pc, #24]	; (8000320 <Mcal_RCC_InitSysClock+0x5c>)
+ 8000306:	f023 0302 	bic.w	r3, r3, #2
+ 800030a:	6013      	str	r3, [r2, #0]
+        local_functionStates = E_OK;
+ 800030c:	2301      	movs	r3, #1
+ 800030e:	71fb      	strb	r3, [r7, #7]
+            #error "Wrong Choice !!"
+        #endif /* RCC_PLL_SRC */
+    #else 
+        #error "Wrong Choice !!"
+    #endif /* RCC_SYSCLK */
+    return local_functionStates;
+ 8000310:	79fb      	ldrb	r3, [r7, #7]
+}
+ 8000312:	4618      	mov	r0, r3
+ 8000314:	370c      	adds	r7, #12
+ 8000316:	46bd      	mov	sp, r7
+ 8000318:	bc80      	pop	{r7}
+ 800031a:	4770      	bx	lr
+ 800031c:	40021000 	.word	0x40021000
+ 8000320:	40021004 	.word	0x40021004
+
+08000324 <MCAL_SCB_SetPriorityGrouping>:
+#include "SCB_interface.h"
+#include "SCB_private.h"
+#include "SCB_config.h"
+/*====================================================   Start_FUNCTION   ====================================================*/
+Std_ReturnType MCAL_SCB_SetPriorityGrouping(u32 Copy_PrioirtyGrouping)
+{
+ 8000324:	b480      	push	{r7}
+ 8000326:	b085      	sub	sp, #20
+ 8000328:	af00      	add	r7, sp, #0
+ 800032a:	6078      	str	r0, [r7, #4]
+    Std_ReturnType Local_FunctionStatus = E_NOT_OK;
+ 800032c:	2300      	movs	r3, #0
+ 800032e:	73fb      	strb	r3, [r7, #15]
+    SCB_AIRCR=Copy_PrioirtyGrouping;
+ 8000330:	4a05      	ldr	r2, [pc, #20]	; (8000348 <MCAL_SCB_SetPriorityGrouping+0x24>)
+ 8000332:	687b      	ldr	r3, [r7, #4]
+ 8000334:	6013      	str	r3, [r2, #0]
+    Local_FunctionStatus = E_OK;
+ 8000336:	2301      	movs	r3, #1
+ 8000338:	73fb      	strb	r3, [r7, #15]
+    return Local_FunctionStatus;
+ 800033a:	7bfb      	ldrb	r3, [r7, #15]
+}
+ 800033c:	4618      	mov	r0, r3
+ 800033e:	3714      	adds	r7, #20
+ 8000340:	46bd      	mov	sp, r7
+ 8000342:	bc80      	pop	{r7}
+ 8000344:	4770      	bx	lr
+ 8000346:	bf00      	nop
+ 8000348:	e000ed0c 	.word	0xe000ed0c
+
+0800034c <main>:
+#include "NVIC_interface.h"
+/*APP*/
+
+
+int main(void)
+{
+ 800034c:	b580      	push	{r7, lr}
+ 800034e:	af00      	add	r7, sp, #0
+	/*Setup*/
+	Mcal_RCC_InitSysClock();
+ 8000350:	f7ff ffb8 	bl	80002c4 <Mcal_RCC_InitSysClock>
+	MCAL_NVIC_EnableIRQ(NVIC_SPI1_IRQn);
+ 8000354:	2023      	movs	r0, #35	; 0x23
+ 8000356:	f7ff ff0b 	bl	8000170 <MCAL_NVIC_EnableIRQ>
+	MCAL_NVIC_xSetPriority(NVIC_SPI1_IRQn, 10);
+ 800035a:	210a      	movs	r1, #10
+ 800035c:	2023      	movs	r0, #35	; 0x23
+ 800035e:	f7ff ff83 	bl	8000268 <MCAL_NVIC_xSetPriority>
+	for(;;)
+	{
+	 /* Loop forever */
+	MCAL_NVIC_EnableIRQ(NVIC_SPI1_IRQn);
+ 8000362:	2023      	movs	r0, #35	; 0x23
+ 8000364:	f7ff ff04 	bl	8000170 <MCAL_NVIC_EnableIRQ>
+	MCAL_NVIC_DisableIRQ(NVIC_SPI1_IRQn);
+ 8000368:	2023      	movs	r0, #35	; 0x23
+ 800036a:	f7ff ff3f 	bl	80001ec <MCAL_NVIC_DisableIRQ>
+	MCAL_NVIC_EnableIRQ(NVIC_SPI1_IRQn);
+ 800036e:	e7f8      	b.n	8000362 <main+0x16>
+
+08000370 <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8000370:	480d      	ldr	r0, [pc, #52]	; (80003a8 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 8000372:	4685      	mov	sp, r0
+/* Call the clock system initialization function.*/
+  bl  SystemInit
+ 8000374:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8000378:	480c      	ldr	r0, [pc, #48]	; (80003ac <LoopForever+0x6>)
+  ldr r1, =_edata
+ 800037a:	490d      	ldr	r1, [pc, #52]	; (80003b0 <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 800037c:	4a0d      	ldr	r2, [pc, #52]	; (80003b4 <LoopForever+0xe>)
+  movs r3, #0
+ 800037e:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 8000380:	e002      	b.n	8000388 <LoopCopyDataInit>
+
+08000382 <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 8000382:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 8000384:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 8000386:	3304      	adds	r3, #4
+
+08000388 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8000388:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 800038a:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 800038c:	d3f9      	bcc.n	8000382 <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 800038e:	4a0a      	ldr	r2, [pc, #40]	; (80003b8 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 8000390:	4c0a      	ldr	r4, [pc, #40]	; (80003bc <LoopForever+0x16>)
+  movs r3, #0
+ 8000392:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8000394:	e001      	b.n	800039a <LoopFillZerobss>
+
+08000396 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8000396:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8000398:	3204      	adds	r2, #4
+
+0800039a <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 800039a:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 800039c:	d3fb      	bcc.n	8000396 <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 800039e:	f000 f811 	bl	80003c4 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 80003a2:	f7ff ffd3 	bl	800034c <main>
+
+080003a6 <LoopForever>:
+
+LoopForever:
+  b LoopForever
+ 80003a6:	e7fe      	b.n	80003a6 <LoopForever>
+  ldr   r0, =_estack
+ 80003a8:	20005000 	.word	0x20005000
+  ldr r0, =_sdata
+ 80003ac:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 80003b0:	20000000 	.word	0x20000000
+  ldr r2, =_sidata
+ 80003b4:	0800042c 	.word	0x0800042c
+  ldr r2, =_sbss
+ 80003b8:	20000000 	.word	0x20000000
+  ldr r4, =_ebss
+ 80003bc:	2000001c 	.word	0x2000001c
+
+080003c0 <ADC1_2_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 80003c0:	e7fe      	b.n	80003c0 <ADC1_2_IRQHandler>
+	...
+
+080003c4 <__libc_init_array>:
+ 80003c4:	b570      	push	{r4, r5, r6, lr}
+ 80003c6:	2600      	movs	r6, #0
+ 80003c8:	4d0c      	ldr	r5, [pc, #48]	; (80003fc <__libc_init_array+0x38>)
+ 80003ca:	4c0d      	ldr	r4, [pc, #52]	; (8000400 <__libc_init_array+0x3c>)
+ 80003cc:	1b64      	subs	r4, r4, r5
+ 80003ce:	10a4      	asrs	r4, r4, #2
+ 80003d0:	42a6      	cmp	r6, r4
+ 80003d2:	d109      	bne.n	80003e8 <__libc_init_array+0x24>
+ 80003d4:	f000 f81a 	bl	800040c <_init>
+ 80003d8:	2600      	movs	r6, #0
+ 80003da:	4d0a      	ldr	r5, [pc, #40]	; (8000404 <__libc_init_array+0x40>)
+ 80003dc:	4c0a      	ldr	r4, [pc, #40]	; (8000408 <__libc_init_array+0x44>)
+ 80003de:	1b64      	subs	r4, r4, r5
+ 80003e0:	10a4      	asrs	r4, r4, #2
+ 80003e2:	42a6      	cmp	r6, r4
+ 80003e4:	d105      	bne.n	80003f2 <__libc_init_array+0x2e>
+ 80003e6:	bd70      	pop	{r4, r5, r6, pc}
+ 80003e8:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80003ec:	4798      	blx	r3
+ 80003ee:	3601      	adds	r6, #1
+ 80003f0:	e7ee      	b.n	80003d0 <__libc_init_array+0xc>
+ 80003f2:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80003f6:	4798      	blx	r3
+ 80003f8:	3601      	adds	r6, #1
+ 80003fa:	e7f2      	b.n	80003e2 <__libc_init_array+0x1e>
+ 80003fc:	08000424 	.word	0x08000424
+ 8000400:	08000424 	.word	0x08000424
+ 8000404:	08000424 	.word	0x08000424
+ 8000408:	08000428 	.word	0x08000428
+
+0800040c <_init>:
+ 800040c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800040e:	bf00      	nop
+ 8000410:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000412:	bc08      	pop	{r3}
+ 8000414:	469e      	mov	lr, r3
+ 8000416:	4770      	bx	lr
+
+08000418 <_fini>:
+ 8000418:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800041a:	bf00      	nop
+ 800041c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800041e:	bc08      	pop	{r3}
+ 8000420:	469e      	mov	lr, r3
+ 8000422:	4770      	bx	lr
