@@ -139,157 +139,140 @@ volatile GPT_TIM_RegDef_t* TIM[TIM_IN_STM32F103C6]={
 /**< Macro for the seconds */
 #define Seconds         1
 /**
- * @brief Enable the GPTx 
+ * @brief Enables the specified General Purpose Timer (GPT).
  *
- * This function Enables the GPTx setting it to its default state.
+ * This function enables the General Purpose Timer (GPT) indicated by 'Copy_GPT_TIMx'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to enable
+ * @param[in] Copy_GPT_TIMx The identifier for the GPT timer to be enabled.
+ *
  * @return Std_ReturnType
  *   - E_OK     : GPT enabled successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_NOT_OK : Error occurred while enabling GPT or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_Enable(u8 Copy_GPT_TIMx);
 /**
- * @brief Disaples the GPTx 
+ * @brief Disables the specified General Purpose Timer (GPT).
  *
- * This function Disaples the GPTx setting it to its default state.
+ * This function disables the General Purpose Timer (GPT) indicated by 'Copy_GPT_TIMx'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to disaple
+ * @param[in] Copy_GPT_TIMx The identifier for the GPT timer to be disabled.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT Disapled successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : GPT disabled successfully.
+ *   - E_NOT_OK : Error occurred while disabling GPT or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_Disable(u8 Copy_GPT_TIMx);
 /**
- * @brief Sets the GPTx prescalar
+ * @brief Sets the prescaler value for the specified General Purpose Timer (GPT).
  *
- * This function sets the prescalar value for the timer.
- * The counter clock frequency (CK_CNT) is equal to fCK_PSC / (PSC[15:0] + 1)
+ * This function sets the prescaler value for the General Purpose Timer (GPT)
+ * indicated by 'Copy_GPT_TIMx' to the value specified by 'Copy_PrescalarValue'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the prescalar for.
- * @param[in] Copy_PrescalarValue The prescalar value you want to set.
+ * @param[in] Copy_GPT_TIMx       The identifier for the GPT timer.
+ * @param[in] Copy_PrescalarValue The prescaler value to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT prescalar is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : Prescaler value set successfully.
+ *   - E_NOT_OK : Error occurred while setting prescaler or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_SetPreScalar(u8 Copy_GPT_TIMx,u16 Copy_PrescalarValue);
 /**
- * @brief Sets the GPTx CLKDIV
+ * @brief Sets the clock divider value for the specified General Purpose Timer (GPT).
  *
- * This function sets the CLKDIV value for the timer.
- * the division ratio between the timer clock (CK_INT) frequency and the 
- * dead-time and sampling clock (tDTS)used by the dead-time generators and the digital filte
+ * This function sets the clock divider value for the General Purpose Timer (GPT)
+ * indicated by 'Copy_GPT_TIMx' to the value specified by 'Copy_CLKDivValue'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the CLK Div for.
- * @param[in] Copy_CLKDivValue The CLKDIV value you want to set.
- *                     Options: DIV_1 DIV_2 DIV_4
+ * @param[in] Copy_GPT_TIMx       The identifier for the GPT timer.
+ * @param[in] Copy_CLKDivValue    The clock divider value to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT CLKDIV is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : Clock divider value set successfully.
+ *   - E_NOT_OK : Error occurred while setting the clock divider or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_SetClkDiv(u8 Copy_GPT_TIMx,GPT_CLKDiv_t Copy_CLKDivValue);
 /**
- * @brief Sets the GPTx ARR value
+ * @brief Sets the period value for the specified General Purpose Timer (GPT).
  *
- * This function sets the Auto Relod Register (ARR) value for the timer.
- * The counter is blocked while the auto-reload value is null.
+ * This function sets the period value for the General Purpose Timer (GPT)
+ * indicated by 'Copy_TIMx' to the value specified by 'Copy_Period'.
  *
- * @param[in] Copy_TIMx The GPT you want to set the period for.
- * @param[in] Copy_Period The Period you want for the ARR register
+ * @param[in] Copy_TIMx    The identifier for the GPT timer.
+ * @param[in] Copy_Period  The period value to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT period is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : Period value set successfully.
+ *   - E_NOT_OK : Error occurred while setting the period or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_SetPeriod(u8 Copy_TIMx,u16 Copy_Period);
 /**
- * @brief Sets the GPTx count DIR
+ * @brief Sets the counting direction for the specified General Purpose Timer (GPT).
  *
- * This function sets the count direction for the timer.
+ * This function sets the counting direction for the General Purpose Timer (GPT)
+ * indicated by 'Copy_GPT_TIMx' to the direction specified by 'Copy_CLKCountDir'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the direction for.
- * @param[in] Copy_CLKCountDir Sets the count direction ( UPCounter, DOWNCounter,CenterAlligned)
+ * @param[in] Copy_GPT_TIMx      The identifier for the GPT timer.
+ * @param[in] Copy_CLKCountDir    The counting direction to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT direction is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : Counting direction set successfully.
+ *   - E_NOT_OK : Error occurred while setting the counting direction or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_SetCountDIR(u8 Copy_GPT_TIMx,GPT_CountDir_t Copy_CLKCountDir);
 /**
- * @brief Enables the GPTx Buffer for ARR 
+ * @brief Sets the ARR (Auto-Reload Register) buffer state for the specified GPT.
  *
- * This function Enbales the GPTx Buffer for ARR.
+ * This function sets the ARR buffer state for the General Purpose Timer (GPT)
+ * indicated by 'Copy_GPT_TIMx' to the state specified by 'Copy_ArrBufferState'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the arr buffer for.
- * @param[in] Copy_ArrBufferState ARR buffer state (Disaple_Arr_Buffer,Enable_Arr_Buffer)
+ * @param[in] Copy_GPT_TIMx          The identifier for the GPT timer.
+ * @param[in] Copy_ArrBufferState    The ARR buffer state to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT  arr buffer is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : ARR buffer state set successfully.
+ *   - E_NOT_OK : Error occurred while setting ARR buffer state or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_SetARRBuffer(u8 Copy_GPT_TIMx,GPT_ArrBufferState_t Copy_ArrBufferState);
 /**
- * @brief Enables the GPTx interrupt
+ * @brief Sets the interrupt state for the specified General Purpose Timer (GPT).
  *
- * This function enables the GPTx interrupt
+ * This function sets the interrupt state for the General Purpose Timer (GPT)
+ * indicated by 'Copy_GPT_TIMx' to the state specified by 'Copy_INTState'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the inerrupt for.
- * @param[in] Copy_INTState GPT Interrupt state (GPT_Disaple_Interrupt,GPT_Enaple_Interrupt)
+ * @param[in] Copy_GPT_TIMx    The identifier for the GPT timer.
+ * @param[in] Copy_INTState    The interrupt state to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT inerrupt is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : Interrupt state set successfully.
+ *   - E_NOT_OK : Error occurred while setting the interrupt state or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_SetInterrupt(u8 Copy_GPT_TIMx,GPT_INTState_t Copy_INTState);
 /**
- * @brief Sets the GPTx Allignment mode
+ * @brief Sets the PWM alignment mode for the specified General Purpose Timer (GPT).
  *
- * This function Sets the GPTx Allignment mode
+ * This function sets the PWM alignment mode for the General Purpose Timer (GPT)
+ * indicated by 'Copy_GPT_TIMx' to the mode specified by 'Copy_AllignMode'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the Allignment for.
- * @param[in] Copy_INTState GPT Interrupt state (Edge_AllignedMode,Center_AllignedMode)
+ * @param[in] Copy_GPT_TIMx      The identifier for the GPT timer.
+ * @param[in] Copy_AllignMode    The PWM alignment mode to be set for the timer.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT Allignment is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : PWM alignment mode set successfully.
+ *   - E_NOT_OK : Error occurred while setting PWM alignment mode or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_PWM_SetAllignmentMode(u8 Copy_GPT_TIMx,GPT_PWM_AllignMode_t Copy_AllignMode);
 /**
- * @brief Sets the GPTx PWM Channel mode
+ * @brief Sets the PWM channel and mode for the specified General Purpose Timer (GPT).
  *
- * This function Sets the GPTx PWM Channel mode
+ * This function sets the PWM channel ('Copy_Channel') to operate in the mode
+ * specified by 'Copy_PWM_Mode' for the General Purpose Timer (GPT) indicated by 'Copy_GPT_TIMx'.
  *
- * @param[in] Copy_GPT_TIMx The GPT you want to set the PWM Channel for.
- * @param[in] Copy_Channel GPT PWM Channel  (TIM_Channel1,TIM_Channel2,TIM_Channel3,TIM_Channel4)
- * @param[in] Copy_PWM_Mode GPT PWM Channel Type  (PWM_11,PWM_22)
+ * @param[in] Copy_GPT_TIMx    The identifier for the GPT timer.
+ * @param[in] Copy_Channel     The PWM channel to be configured.
+ * @param[in] Copy_PWM_Mode    The PWM mode to be set for the channel.
+ *
  * @return Std_ReturnType
- *   - E_OK     : GPT PWM Channel MODE is set successfully.
- *   - E_NOT_OK : An error occurred (invalid GPT).
- * 
- * @note This function is only called within the driver it cannot be called elsewhere
- * 
+ *   - E_OK     : PWM channel and mode set successfully.
+ *   - E_NOT_OK : Error occurred while setting PWM channel/mode or invalid parameters.
  */
 Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_Channel,GPT_PWM_Mode_t Copy_PWM_Mode);
 

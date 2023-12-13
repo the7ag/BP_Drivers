@@ -23,29 +23,44 @@
 #include "GPT_interface.h"
 #include "GPT_private.h"
 #include "GPT_config.h"
-
+// Represents the ratio between microseconds and timer ticks
 static volatile f32 microSecToTickRatio=0;
-
+// Interval mode flags for different GPT timers (initialized to 0)
 static volatile u8 GPT_TIM1_IntervalMode=0;
 static volatile u8 GPT_TIM2_IntervalMode=0;
 static volatile u8 GPT_TIM3_IntervalMode=0;
 static volatile u8 GPT_TIM4_IntervalMode=0;
 
+// Macro to set the interval mode for GPT Timer 1
 #define GPT_TIM1_SetIntervalMode(MODE) GPT_TIM1_IntervalMode = MODE
+
+// Macro to set the interval mode for GPT Timer 2
 #define GPT_TIM2_SetIntervalMode(MODE) GPT_TIM2_IntervalMode = MODE
+
+// Macro to set the interval mode for GPT Timer 3
 #define GPT_TIM3_SetIntervalMode(MODE) GPT_TIM3_IntervalMode = MODE
+
+// Macro to set the interval mode for GPT Timer 4
 #define GPT_TIM4_SetIntervalMode(MODE) GPT_TIM4_IntervalMode = MODE
 
+// Macro to get the interval mode for GPT Timer 1
 #define GPT_TIM1_GetIntervalMode() (GPT_TIM1_IntervalMode & 1)
+
+// Macro to get the interval mode for GPT Timer 2
 #define GPT_TIM2_GetIntervalMode() (GPT_TIM2_IntervalMode & 1)
+
+// Macro to get the interval mode for GPT Timer 3
 #define GPT_TIM3_GetIntervalMode() (GPT_TIM3_IntervalMode & 1)
+
+// Macro to get the interval mode for GPT Timer 4
 #define GPT_TIM4_GetIntervalMode() (GPT_TIM4_IntervalMode & 1)
 
+// Function pointers to callback functions for different GPT timers
 static void (*TIM1_CallBack)(void);
 static void (*TIM2_CallBack)(void);
 static void (*TIM3_CallBack)(void);
 static void (*TIM4_CallBack)(void);
-
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_init(u8 Copy_TIMx,GPT_Config_t* Copy_GPT_Config)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -71,7 +86,8 @@ Std_ReturnType GPT_TIMx_init(u8 Copy_TIMx,GPT_Config_t* Copy_GPT_Config)
     local_functionStates = E_OK;
     return local_functionStates;
 }
-
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_Enable(u8 Copy_GPT_TIMx)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -79,6 +95,8 @@ Std_ReturnType GPT_TIMx_Enable(u8 Copy_GPT_TIMx)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_Disable(u8 Copy_GPT_TIMx)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -86,6 +104,8 @@ Std_ReturnType GPT_TIMx_Disable(u8 Copy_GPT_TIMx)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetCountDIR(u8 Copy_GPT_TIMx,GPT_CountDir_t Copy_CLKCountDir)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -112,7 +132,8 @@ Std_ReturnType GPT_TIMx_SetCountDIR(u8 Copy_GPT_TIMx,GPT_CountDir_t Copy_CLKCoun
     }
     return local_functionStates;
 }
-
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetPreScalar(u8 Copy_GPT_TIMx,u16 Copy_PrescalarValue)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -120,6 +141,8 @@ Std_ReturnType GPT_TIMx_SetPreScalar(u8 Copy_GPT_TIMx,u16 Copy_PrescalarValue)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetPeriod(u8 Copy_TIMx,u16 Copy_Period)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -127,6 +150,8 @@ Std_ReturnType GPT_TIMx_SetPeriod(u8 Copy_TIMx,u16 Copy_Period)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetClkDiv(u8 Copy_GPT_TIMx,GPT_CLKDiv_t Copy_CLKDivValue)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -154,6 +179,8 @@ Std_ReturnType GPT_TIMx_SetClkDiv(u8 Copy_GPT_TIMx,GPT_CLKDiv_t Copy_CLKDivValue
     }
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetARRBuffer(u8 Copy_GPT_TIMx,GPT_ArrBufferState_t Copy_ArrBufferState)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -173,6 +200,8 @@ Std_ReturnType GPT_TIMx_SetARRBuffer(u8 Copy_GPT_TIMx,GPT_ArrBufferState_t Copy_
     }
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetInterrupt(u8 Copy_GPT_TIMx,GPT_INTState_t Copy_INTState)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -192,6 +221,8 @@ Std_ReturnType GPT_TIMx_SetInterrupt(u8 Copy_GPT_TIMx,GPT_INTState_t Copy_INTSta
     }
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetBusyWait(u8 Copy_TIMx,u16 Copy_Ticks , u16 Copy_TickType)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -205,6 +236,8 @@ Std_ReturnType GPT_TIMx_SetBusyWait(u8 Copy_TIMx,u16 Copy_Ticks , u16 Copy_TickT
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetIntervalSingle(u8 Copy_TIMx,u16 Copy_Ticks , u16 Copy_TickType, void (*Copy_voidpF)(void))
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -239,6 +272,8 @@ Std_ReturnType GPT_TIMx_SetIntervalSingle(u8 Copy_TIMx,u16 Copy_Ticks , u16 Copy
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_SetIntervalPeriodic(u8 Copy_TIMx,u16 Copy_Ticks , u16 Copy_TickType, void (*Copy_voidpF)(void))
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -274,6 +309,8 @@ Std_ReturnType GPT_TIMx_SetIntervalPeriodic(u8 Copy_TIMx,u16 Copy_Ticks , u16 Co
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_GetRemainingTime(u8 Copy_TIMx,GPT_CountDir_t Copy_CountDir , u16* Copy_Remaining)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -294,6 +331,8 @@ Std_ReturnType GPT_TIMx_GetRemainingTime(u8 Copy_TIMx,GPT_CountDir_t Copy_CountD
     }
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 void TIM1_UP_IRQHandler (void)
 {
     if(GPT_TIM1_GetIntervalMode() == TIM_SINGLE_INTERVAL_MODE)
@@ -309,6 +348,8 @@ void TIM1_UP_IRQHandler (void)
     CLR_BIT(TIM[0]->SR,TIMX_SR_UIF);
 
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 void TIM2_UP_IRQHandler (void)
 {
     if(GPT_TIM2_GetIntervalMode() == TIM_SINGLE_INTERVAL_MODE)
@@ -323,6 +364,8 @@ void TIM2_UP_IRQHandler (void)
     TIM2_CallBack();
     CLR_BIT(TIM[1]->SR,TIMX_SR_UIF);
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 void TIM3_UP_IRQHandler (void)
 {
     if(GPT_TIM3_GetIntervalMode() == TIM_SINGLE_INTERVAL_MODE)
@@ -337,6 +380,8 @@ void TIM3_UP_IRQHandler (void)
     TIM3_CallBack();
     CLR_BIT(TIM[2]->SR,TIMX_SR_UIF);
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 void TIM4_UP_IRQHandler (void)
 {
     if(GPT_TIM4_GetIntervalMode() == TIM_SINGLE_INTERVAL_MODE)
@@ -351,6 +396,8 @@ void TIM4_UP_IRQHandler (void)
     TIM4_CallBack();
     CLR_BIT(TIM[3]->SR,TIMX_SR_UIF);
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_PWM_INIT(u8 Copy_TIMx,GPT_PWM_Config_t* Copy_PWM_Config)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -362,6 +409,8 @@ Std_ReturnType GPT_PWM_INIT(u8 Copy_TIMx,GPT_PWM_Config_t* Copy_PWM_Config)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_PWM_SetAllignmentMode(u8 Copy_GPT_TIMx,GPT_PWM_AllignMode_t Copy_AllignMode)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -382,6 +431,8 @@ Std_ReturnType GPT_TIMx_PWM_SetAllignmentMode(u8 Copy_GPT_TIMx,GPT_PWM_AllignMod
     }
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_Channel,GPT_PWM_Mode_t Copy_PWM_Mode)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -426,6 +477,8 @@ Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_C
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_PWM_SetDutyCycle(u8 Copy_TIMx,GPT_PWM_Channel_t Copy_Channel , u8 Copy_DutyCycle)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -451,6 +504,8 @@ Std_ReturnType GPT_PWM_SetDutyCycle(u8 Copy_TIMx,GPT_PWM_Channel_t Copy_Channel 
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_PWM_DEINIT(u8 Copy_TIMx,GPT_PWM_Channel_t Copy_Channel)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -487,6 +542,8 @@ Std_ReturnType GPT_PWM_DEINIT(u8 Copy_TIMx,GPT_PWM_Channel_t Copy_Channel)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
+/*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType GPT_PWM_GetCounterValue(u8 Copy_TIMx,u16* Copy_PWMValue)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
@@ -494,3 +551,4 @@ Std_ReturnType GPT_PWM_GetCounterValue(u8 Copy_TIMx,u16* Copy_PWMValue)
     local_functionStates = E_OK;
     return local_functionStates;
 }
+/*====================================================   END_FUNCTION   ====================================================*/
