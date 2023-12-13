@@ -355,9 +355,9 @@ Std_ReturnType GPT_PWM_INIT(u8 Copy_TIMx,GPT_PWM_Config_t* Copy_PWM_Config)
 {
     Std_ReturnType local_functionStates = E_NOT_OK;
     GPT_TIMx_PWM_SetChannel(Copy_TIMx , Copy_PWM_Config->PWM_Channel,Copy_PWM_Config->PWM_Mode);
-    u32 Local_counter = (Copy_PWM_Config->Freq * Copy_PWM_Config->ARR);
-    //u16 Local_Prescalar = TIM_Clk_Freq/Local_counter;
-    //GPT_TIMx_SetPreScalar(Copy_TIMx,Local_Prescalar);
+    //u32 Local_counter = (Copy_PWM_Config->Freq * Copy_PWM_Config->ARR);
+  //  u16 Local_Prescalar = TIM_Clk_Freq/Local_counter;
+   // GPT_TIMx_SetPreScalar(Copy_TIMx,Local_Prescalar);
     GPT_TIMx_SetPeriod( Copy_TIMx , Copy_PWM_Config->ARR);
     SET_BIT( TIM[Copy_TIMx]->CR1 , TIMx_CR1_ARPE);
     SET_BIT( TIM[Copy_TIMx]->CR1 , TIMX_CR1_CEN);
@@ -395,7 +395,7 @@ Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_C
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 | (Copy_PWM_Mode<<4);
         SET_BIT( TIM[Copy_GPT_TIMx]->CCMR1 , TIMX_CCMR1_OC1PE);
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1E );
-        SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1P );
+        CLR_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1P );
         break;
     case TIM_Channel2:
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 & ~(0b1111<<12);

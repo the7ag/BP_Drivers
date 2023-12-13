@@ -1,0 +1,2 @@
+../Src/AFIO_program.c:23:16:MCAL_AFIO_SetEXTIConfigration	24	static
+../Src/AFIO_program.c:44:16:MCAL_AFIO_SetRemap	24	static
