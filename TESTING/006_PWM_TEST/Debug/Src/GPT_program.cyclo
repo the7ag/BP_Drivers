@@ -18,6 +18,6 @@ GPT_program.c:340:6:TIM4_UP_IRQHandler	2
 GPT_program.c:354:16:GPT_PWM_INIT	1
 GPT_program.c:368:16:GPT_TIMx_PWM_SetAllignmentMode	3
 GPT_program.c:388:16:GPT_TIMx_PWM_SetChannel	5
-GPT_program.c:428:16:GPT_PWM_SetDutyCycle	5
-GPT_program.c:453:16:GPT_PWM_DEINIT	5
-GPT_program.c:489:16:GPT_PWM_GetCounterValue	1
+GPT_program.c:429:16:GPT_PWM_SetDutyCycle	5
+GPT_program.c:454:16:GPT_PWM_DEINIT	5
+GPT_program.c:490:16:GPT_PWM_GetCounterValue	1

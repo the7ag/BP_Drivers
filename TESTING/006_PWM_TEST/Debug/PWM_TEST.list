@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000130  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00001508  08000130  08000130  00010130  2**2
+  1 .text         000015c4  08000130  08000130  00010130  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000014  08001638  08001638  00011638  2**2
+  2 .rodata       00000014  080016f4  080016f4  000116f4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800164c  0800164c  00020010  2**0
+  3 .ARM.extab    00000000  08001708  08001708  00020010  2**0
                   CONTENTS
-  4 .ARM          00000000  0800164c  0800164c  00020010  2**0
+  4 .ARM          00000000  08001708  08001708  00020010  2**0
                   CONTENTS
-  5 .preinit_array 00000000  0800164c  0800164c  00020010  2**0
+  5 .preinit_array 00000000  08001708  08001708  00020010  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  0800164c  0800164c  0001164c  2**2
+  6 .init_array   00000004  08001708  08001708  00011708  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  08001650  08001650  00011650  2**2
+  7 .fini_array   00000004  0800170c  0800170c  0001170c  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000010  20000000  08001654  00020000  2**2
+  8 .data         00000010  20000000  08001710  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000024  20000010  08001664  00020010  2**2
+  9 .bss          0000002c  20000010  08001720  00020010  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  20000034  08001664  00020034  2**0
+ 10 ._user_heap_stack 00000604  2000003c  08001720  0002003c  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020010  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000015b0  00000000  00000000  00020039  2**0
+ 12 .debug_info   00001a8e  00000000  00000000  00020039  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00000483  00000000  00000000  000215e9  2**0
+ 13 .debug_abbrev 00000629  00000000  00000000  00021ac7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000001d8  00000000  00000000  00021a70  2**3
+ 14 .debug_aranges 00000258  00000000  00000000  000220f0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000190  00000000  00000000  00021c48  2**3
+ 15 .debug_ranges 00000200  00000000  00000000  00022348  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00000736  00000000  00000000  00021dd8  2**0
+ 16 .debug_macro  000007f3  00000000  00000000  00022548  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00000e16  00000000  00000000  0002250e  2**0
+ 17 .debug_line   00001227  00000000  00000000  00022d3b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00004cf0  00000000  00000000  00023324  2**0
+ 18 .debug_str    000051ab  00000000  00000000  00023f62  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  00028014  2**0
+ 19 .comment      00000050  00000000  00000000  0002910d  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000007d0  00000000  00000000  00028064  2**2
+ 20 .debug_frame  000009cc  00000000  00000000  00029160  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  8000146:	bd10      	pop	{r4, pc}
  8000148:	20000010 	.word	0x20000010
  800014c:	00000000 	.word	0x00000000
- 8000150:	08001620 	.word	0x08001620
+ 8000150:	080016dc 	.word	0x080016dc
 
 08000154 <frame_dummy>:
  8000154:	b508      	push	{r3, lr}
@@ -74,7 +74,7 @@ Disassembly of section .text:
  8000162:	bd08      	pop	{r3, pc}
  8000164:	00000000 	.word	0x00000000
  8000168:	20000014 	.word	0x20000014
- 800016c:	08001620 	.word	0x08001620
+ 800016c:	080016dc 	.word	0x080016dc
 
 08000170 <__aeabi_drsub>:
  8000170:	f081 4100 	eor.w	r1, r1, #2147483648	; 0x80000000
@@ -1855,30 +1855,30 @@ Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_C
     switch (Copy_Channel)
  80010a6:	79bb      	ldrb	r3, [r7, #6]
  80010a8:	2b03      	cmp	r3, #3
- 80010aa:	f200 8137 	bhi.w	800131c <GPT_TIMx_PWM_SetChannel+0x28c>
+ 80010aa:	f200 814b 	bhi.w	8001344 <GPT_TIMx_PWM_SetChannel+0x2b4>
  80010ae:	a201      	add	r2, pc, #4	; (adr r2, 80010b4 <GPT_TIMx_PWM_SetChannel+0x24>)
  80010b0:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
  80010b4:	080010c5 	.word	0x080010c5
- 80010b8:	0800115b 	.word	0x0800115b
- 80010bc:	080011f1 	.word	0x080011f1
- 80010c0:	08001287 	.word	0x08001287
+ 80010b8:	0800117f 	.word	0x0800117f
+ 80010bc:	08001215 	.word	0x08001215
+ 80010c0:	080012ab 	.word	0x080012ab
     {
     case TIM_Channel1:
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 & ~(0b1111<<4);
  80010c4:	79fb      	ldrb	r3, [r7, #7]
- 80010c6:	4a9b      	ldr	r2, [pc, #620]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 80010c6:	4a9e      	ldr	r2, [pc, #632]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  80010c8:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  80010cc:	8b1b      	ldrh	r3, [r3, #24]
  80010ce:	b29a      	uxth	r2, r3
  80010d0:	79fb      	ldrb	r3, [r7, #7]
- 80010d2:	4998      	ldr	r1, [pc, #608]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 80010d2:	499b      	ldr	r1, [pc, #620]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  80010d4:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
  80010d8:	f022 02f0 	bic.w	r2, r2, #240	; 0xf0
  80010dc:	b292      	uxth	r2, r2
  80010de:	831a      	strh	r2, [r3, #24]
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 | (Copy_PWM_Mode<<4);
  80010e0:	79fb      	ldrb	r3, [r7, #7]
- 80010e2:	4a94      	ldr	r2, [pc, #592]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 80010e2:	4a97      	ldr	r2, [pc, #604]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  80010e4:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  80010e8:	8b1b      	ldrh	r3, [r3, #24]
  80010ea:	b29b      	uxth	r3, r3
@@ -1889,793 +1889,929 @@ Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_C
  80010f4:	4313      	orrs	r3, r2
  80010f6:	b219      	sxth	r1, r3
  80010f8:	79fb      	ldrb	r3, [r7, #7]
- 80010fa:	4a8e      	ldr	r2, [pc, #568]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 80010fa:	4a91      	ldr	r2, [pc, #580]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  80010fc:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  8001100:	b28a      	uxth	r2, r1
  8001102:	831a      	strh	r2, [r3, #24]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCMR1 , TIMX_CCMR1_OC1PE);
  8001104:	79fb      	ldrb	r3, [r7, #7]
- 8001106:	4a8b      	ldr	r2, [pc, #556]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 8001106:	4a8e      	ldr	r2, [pc, #568]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  8001108:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  800110c:	8b1b      	ldrh	r3, [r3, #24]
  800110e:	b29a      	uxth	r2, r3
  8001110:	79fb      	ldrb	r3, [r7, #7]
- 8001112:	4988      	ldr	r1, [pc, #544]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 8001112:	498b      	ldr	r1, [pc, #556]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  8001114:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
  8001118:	f042 0208 	orr.w	r2, r2, #8
  800111c:	b292      	uxth	r2, r2
  800111e:	831a      	strh	r2, [r3, #24]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1E );
  8001120:	79fb      	ldrb	r3, [r7, #7]
- 8001122:	4a84      	ldr	r2, [pc, #528]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 8001122:	4a87      	ldr	r2, [pc, #540]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  8001124:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  8001128:	8c1b      	ldrh	r3, [r3, #32]
  800112a:	b29a      	uxth	r2, r3
  800112c:	79fb      	ldrb	r3, [r7, #7]
- 800112e:	4981      	ldr	r1, [pc, #516]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 800112e:	4984      	ldr	r1, [pc, #528]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  8001130:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
  8001134:	f042 0201 	orr.w	r2, r2, #1
  8001138:	b292      	uxth	r2, r2
  800113a:	841a      	strh	r2, [r3, #32]
-        CLR_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1P );
+        SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1P );
  800113c:	79fb      	ldrb	r3, [r7, #7]
- 800113e:	4a7d      	ldr	r2, [pc, #500]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 800113e:	4a80      	ldr	r2, [pc, #512]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  8001140:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  8001144:	8c1b      	ldrh	r3, [r3, #32]
  8001146:	b29a      	uxth	r2, r3
  8001148:	79fb      	ldrb	r3, [r7, #7]
- 800114a:	497a      	ldr	r1, [pc, #488]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 800114a:	497d      	ldr	r1, [pc, #500]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  800114c:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 8001150:	f022 0202 	bic.w	r2, r2, #2
+ 8001150:	f042 0202 	orr.w	r2, r2, #2
  8001154:	b292      	uxth	r2, r2
  8001156:	841a      	strh	r2, [r3, #32]
+        SET_BIT(TIM[Copy_GPT_TIMx]->BDTR ,15);
+ 8001158:	79fb      	ldrb	r3, [r7, #7]
+ 800115a:	4a79      	ldr	r2, [pc, #484]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 800115c:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 8001160:	f8b3 3044 	ldrh.w	r3, [r3, #68]	; 0x44
+ 8001164:	b29b      	uxth	r3, r3
+ 8001166:	79fa      	ldrb	r2, [r7, #7]
+ 8001168:	4975      	ldr	r1, [pc, #468]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 800116a:	f851 2022 	ldr.w	r2, [r1, r2, lsl #2]
+ 800116e:	ea6f 4343 	mvn.w	r3, r3, lsl #17
+ 8001172:	ea6f 4353 	mvn.w	r3, r3, lsr #17
+ 8001176:	b29b      	uxth	r3, r3
+ 8001178:	f8a2 3044 	strh.w	r3, [r2, #68]	; 0x44
         break;
- 8001158:	e0e3      	b.n	8001322 <GPT_TIMx_PWM_SetChannel+0x292>
+ 800117c:	e0e5      	b.n	800134a <GPT_TIMx_PWM_SetChannel+0x2ba>
     case TIM_Channel2:
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 & ~(0b1111<<12);
- 800115a:	79fb      	ldrb	r3, [r7, #7]
- 800115c:	4a75      	ldr	r2, [pc, #468]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800115e:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001162:	8b1b      	ldrh	r3, [r3, #24]
- 8001164:	b29a      	uxth	r2, r3
- 8001166:	79fb      	ldrb	r3, [r7, #7]
- 8001168:	4972      	ldr	r1, [pc, #456]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800116a:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 800116e:	f3c2 020b 	ubfx	r2, r2, #0, #12
- 8001172:	b292      	uxth	r2, r2
- 8001174:	831a      	strh	r2, [r3, #24]
-        TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 | (Copy_PWM_Mode<<12);
- 8001176:	79fb      	ldrb	r3, [r7, #7]
- 8001178:	4a6e      	ldr	r2, [pc, #440]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800117a:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 800117e:	8b1b      	ldrh	r3, [r3, #24]
- 8001180:	b29b      	uxth	r3, r3
- 8001182:	b21a      	sxth	r2, r3
- 8001184:	797b      	ldrb	r3, [r7, #5]
- 8001186:	031b      	lsls	r3, r3, #12
- 8001188:	b21b      	sxth	r3, r3
- 800118a:	4313      	orrs	r3, r2
- 800118c:	b219      	sxth	r1, r3
- 800118e:	79fb      	ldrb	r3, [r7, #7]
- 8001190:	4a68      	ldr	r2, [pc, #416]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001192:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001196:	b28a      	uxth	r2, r1
+ 800117e:	79fb      	ldrb	r3, [r7, #7]
+ 8001180:	4a6f      	ldr	r2, [pc, #444]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001182:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 8001186:	8b1b      	ldrh	r3, [r3, #24]
+ 8001188:	b29a      	uxth	r2, r3
+ 800118a:	79fb      	ldrb	r3, [r7, #7]
+ 800118c:	496c      	ldr	r1, [pc, #432]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 800118e:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 8001192:	f3c2 020b 	ubfx	r2, r2, #0, #12
+ 8001196:	b292      	uxth	r2, r2
  8001198:	831a      	strh	r2, [r3, #24]
-        SET_BIT( TIM[Copy_GPT_TIMx]->CCMR1 , TIMX_CCMR1_OC2PE);
+        TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 | (Copy_PWM_Mode<<12);
  800119a:	79fb      	ldrb	r3, [r7, #7]
- 800119c:	4a65      	ldr	r2, [pc, #404]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 800119c:	4a68      	ldr	r2, [pc, #416]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  800119e:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  80011a2:	8b1b      	ldrh	r3, [r3, #24]
- 80011a4:	b29a      	uxth	r2, r3
- 80011a6:	79fb      	ldrb	r3, [r7, #7]
- 80011a8:	4962      	ldr	r1, [pc, #392]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80011aa:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 80011ae:	f442 6200 	orr.w	r2, r2, #2048	; 0x800
- 80011b2:	b292      	uxth	r2, r2
- 80011b4:	831a      	strh	r2, [r3, #24]
+ 80011a4:	b29b      	uxth	r3, r3
+ 80011a6:	b21a      	sxth	r2, r3
+ 80011a8:	797b      	ldrb	r3, [r7, #5]
+ 80011aa:	031b      	lsls	r3, r3, #12
+ 80011ac:	b21b      	sxth	r3, r3
+ 80011ae:	4313      	orrs	r3, r2
+ 80011b0:	b219      	sxth	r1, r3
+ 80011b2:	79fb      	ldrb	r3, [r7, #7]
+ 80011b4:	4a62      	ldr	r2, [pc, #392]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80011b6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80011ba:	b28a      	uxth	r2, r1
+ 80011bc:	831a      	strh	r2, [r3, #24]
+        SET_BIT( TIM[Copy_GPT_TIMx]->CCMR1 , TIMX_CCMR1_OC2PE);
+ 80011be:	79fb      	ldrb	r3, [r7, #7]
+ 80011c0:	4a5f      	ldr	r2, [pc, #380]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80011c2:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80011c6:	8b1b      	ldrh	r3, [r3, #24]
+ 80011c8:	b29a      	uxth	r2, r3
+ 80011ca:	79fb      	ldrb	r3, [r7, #7]
+ 80011cc:	495c      	ldr	r1, [pc, #368]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80011ce:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 80011d2:	f442 6200 	orr.w	r2, r2, #2048	; 0x800
+ 80011d6:	b292      	uxth	r2, r2
+ 80011d8:	831a      	strh	r2, [r3, #24]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC2E );
- 80011b6:	79fb      	ldrb	r3, [r7, #7]
- 80011b8:	4a5e      	ldr	r2, [pc, #376]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80011ba:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80011be:	8c1b      	ldrh	r3, [r3, #32]
- 80011c0:	b29a      	uxth	r2, r3
- 80011c2:	79fb      	ldrb	r3, [r7, #7]
- 80011c4:	495b      	ldr	r1, [pc, #364]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80011c6:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 80011ca:	f042 0210 	orr.w	r2, r2, #16
- 80011ce:	b292      	uxth	r2, r2
- 80011d0:	841a      	strh	r2, [r3, #32]
+ 80011da:	79fb      	ldrb	r3, [r7, #7]
+ 80011dc:	4a58      	ldr	r2, [pc, #352]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80011de:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80011e2:	8c1b      	ldrh	r3, [r3, #32]
+ 80011e4:	b29a      	uxth	r2, r3
+ 80011e6:	79fb      	ldrb	r3, [r7, #7]
+ 80011e8:	4955      	ldr	r1, [pc, #340]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80011ea:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 80011ee:	f042 0210 	orr.w	r2, r2, #16
+ 80011f2:	b292      	uxth	r2, r2
+ 80011f4:	841a      	strh	r2, [r3, #32]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC2P );
- 80011d2:	79fb      	ldrb	r3, [r7, #7]
- 80011d4:	4a57      	ldr	r2, [pc, #348]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80011d6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80011da:	8c1b      	ldrh	r3, [r3, #32]
- 80011dc:	b29a      	uxth	r2, r3
- 80011de:	79fb      	ldrb	r3, [r7, #7]
- 80011e0:	4954      	ldr	r1, [pc, #336]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80011e2:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 80011e6:	f042 0220 	orr.w	r2, r2, #32
- 80011ea:	b292      	uxth	r2, r2
- 80011ec:	841a      	strh	r2, [r3, #32]
+ 80011f6:	79fb      	ldrb	r3, [r7, #7]
+ 80011f8:	4a51      	ldr	r2, [pc, #324]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80011fa:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80011fe:	8c1b      	ldrh	r3, [r3, #32]
+ 8001200:	b29a      	uxth	r2, r3
+ 8001202:	79fb      	ldrb	r3, [r7, #7]
+ 8001204:	494e      	ldr	r1, [pc, #312]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001206:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 800120a:	f042 0220 	orr.w	r2, r2, #32
+ 800120e:	b292      	uxth	r2, r2
+ 8001210:	841a      	strh	r2, [r3, #32]
         break;
- 80011ee:	e098      	b.n	8001322 <GPT_TIMx_PWM_SetChannel+0x292>
+ 8001212:	e09a      	b.n	800134a <GPT_TIMx_PWM_SetChannel+0x2ba>
     case TIM_Channel3:
         TIM[Copy_GPT_TIMx]->CCMR2 = TIM[Copy_GPT_TIMx]->CCMR2 & ~(0b1111<<4);
- 80011f0:	79fb      	ldrb	r3, [r7, #7]
- 80011f2:	4a50      	ldr	r2, [pc, #320]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80011f4:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80011f8:	8b9b      	ldrh	r3, [r3, #28]
- 80011fa:	b29a      	uxth	r2, r3
- 80011fc:	79fb      	ldrb	r3, [r7, #7]
- 80011fe:	494d      	ldr	r1, [pc, #308]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001200:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 8001204:	f022 02f0 	bic.w	r2, r2, #240	; 0xf0
- 8001208:	b292      	uxth	r2, r2
- 800120a:	839a      	strh	r2, [r3, #28]
-        TIM[Copy_GPT_TIMx]->CCMR2 = TIM[Copy_GPT_TIMx]->CCMR2 | (Copy_PWM_Mode<<4);
- 800120c:	79fb      	ldrb	r3, [r7, #7]
- 800120e:	4a49      	ldr	r2, [pc, #292]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001210:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001214:	8b9b      	ldrh	r3, [r3, #28]
- 8001216:	b29b      	uxth	r3, r3
- 8001218:	b21a      	sxth	r2, r3
- 800121a:	797b      	ldrb	r3, [r7, #5]
- 800121c:	011b      	lsls	r3, r3, #4
- 800121e:	b21b      	sxth	r3, r3
- 8001220:	4313      	orrs	r3, r2
- 8001222:	b219      	sxth	r1, r3
- 8001224:	79fb      	ldrb	r3, [r7, #7]
- 8001226:	4a43      	ldr	r2, [pc, #268]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001228:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 800122c:	b28a      	uxth	r2, r1
+ 8001214:	79fb      	ldrb	r3, [r7, #7]
+ 8001216:	4a4a      	ldr	r2, [pc, #296]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001218:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 800121c:	8b9b      	ldrh	r3, [r3, #28]
+ 800121e:	b29a      	uxth	r2, r3
+ 8001220:	79fb      	ldrb	r3, [r7, #7]
+ 8001222:	4947      	ldr	r1, [pc, #284]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001224:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 8001228:	f022 02f0 	bic.w	r2, r2, #240	; 0xf0
+ 800122c:	b292      	uxth	r2, r2
  800122e:	839a      	strh	r2, [r3, #28]
-        SET_BIT( TIM[Copy_GPT_TIMx]->CCMR2 , TIMX_CCMR2_OC3PE);
+        TIM[Copy_GPT_TIMx]->CCMR2 = TIM[Copy_GPT_TIMx]->CCMR2 | (Copy_PWM_Mode<<4);
  8001230:	79fb      	ldrb	r3, [r7, #7]
- 8001232:	4a40      	ldr	r2, [pc, #256]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 8001232:	4a43      	ldr	r2, [pc, #268]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  8001234:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  8001238:	8b9b      	ldrh	r3, [r3, #28]
- 800123a:	b29a      	uxth	r2, r3
- 800123c:	79fb      	ldrb	r3, [r7, #7]
- 800123e:	493d      	ldr	r1, [pc, #244]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001240:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 8001244:	f042 0208 	orr.w	r2, r2, #8
- 8001248:	b292      	uxth	r2, r2
- 800124a:	839a      	strh	r2, [r3, #28]
+ 800123a:	b29b      	uxth	r3, r3
+ 800123c:	b21a      	sxth	r2, r3
+ 800123e:	797b      	ldrb	r3, [r7, #5]
+ 8001240:	011b      	lsls	r3, r3, #4
+ 8001242:	b21b      	sxth	r3, r3
+ 8001244:	4313      	orrs	r3, r2
+ 8001246:	b219      	sxth	r1, r3
+ 8001248:	79fb      	ldrb	r3, [r7, #7]
+ 800124a:	4a3d      	ldr	r2, [pc, #244]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 800124c:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 8001250:	b28a      	uxth	r2, r1
+ 8001252:	839a      	strh	r2, [r3, #28]
+        SET_BIT( TIM[Copy_GPT_TIMx]->CCMR2 , TIMX_CCMR2_OC3PE);
+ 8001254:	79fb      	ldrb	r3, [r7, #7]
+ 8001256:	4a3a      	ldr	r2, [pc, #232]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001258:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 800125c:	8b9b      	ldrh	r3, [r3, #28]
+ 800125e:	b29a      	uxth	r2, r3
+ 8001260:	79fb      	ldrb	r3, [r7, #7]
+ 8001262:	4937      	ldr	r1, [pc, #220]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001264:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 8001268:	f042 0208 	orr.w	r2, r2, #8
+ 800126c:	b292      	uxth	r2, r2
+ 800126e:	839a      	strh	r2, [r3, #28]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC3E );
- 800124c:	79fb      	ldrb	r3, [r7, #7]
- 800124e:	4a39      	ldr	r2, [pc, #228]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001250:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001254:	8c1b      	ldrh	r3, [r3, #32]
- 8001256:	b29a      	uxth	r2, r3
- 8001258:	79fb      	ldrb	r3, [r7, #7]
- 800125a:	4936      	ldr	r1, [pc, #216]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800125c:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 8001260:	f442 7280 	orr.w	r2, r2, #256	; 0x100
- 8001264:	b292      	uxth	r2, r2
- 8001266:	841a      	strh	r2, [r3, #32]
+ 8001270:	79fb      	ldrb	r3, [r7, #7]
+ 8001272:	4a33      	ldr	r2, [pc, #204]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001274:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 8001278:	8c1b      	ldrh	r3, [r3, #32]
+ 800127a:	b29a      	uxth	r2, r3
+ 800127c:	79fb      	ldrb	r3, [r7, #7]
+ 800127e:	4930      	ldr	r1, [pc, #192]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001280:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 8001284:	f442 7280 	orr.w	r2, r2, #256	; 0x100
+ 8001288:	b292      	uxth	r2, r2
+ 800128a:	841a      	strh	r2, [r3, #32]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC3P );
- 8001268:	79fb      	ldrb	r3, [r7, #7]
- 800126a:	4a32      	ldr	r2, [pc, #200]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800126c:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001270:	8c1b      	ldrh	r3, [r3, #32]
- 8001272:	b29a      	uxth	r2, r3
- 8001274:	79fb      	ldrb	r3, [r7, #7]
- 8001276:	492f      	ldr	r1, [pc, #188]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001278:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 800127c:	f442 7200 	orr.w	r2, r2, #512	; 0x200
- 8001280:	b292      	uxth	r2, r2
- 8001282:	841a      	strh	r2, [r3, #32]
+ 800128c:	79fb      	ldrb	r3, [r7, #7]
+ 800128e:	4a2c      	ldr	r2, [pc, #176]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001290:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 8001294:	8c1b      	ldrh	r3, [r3, #32]
+ 8001296:	b29a      	uxth	r2, r3
+ 8001298:	79fb      	ldrb	r3, [r7, #7]
+ 800129a:	4929      	ldr	r1, [pc, #164]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 800129c:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 80012a0:	f442 7200 	orr.w	r2, r2, #512	; 0x200
+ 80012a4:	b292      	uxth	r2, r2
+ 80012a6:	841a      	strh	r2, [r3, #32]
         break;
- 8001284:	e04d      	b.n	8001322 <GPT_TIMx_PWM_SetChannel+0x292>
+ 80012a8:	e04f      	b.n	800134a <GPT_TIMx_PWM_SetChannel+0x2ba>
     case TIM_Channel4:
         TIM[Copy_GPT_TIMx]->CCMR2 = TIM[Copy_GPT_TIMx]->CCMR2 & ~(0b1111<<4);
- 8001286:	79fb      	ldrb	r3, [r7, #7]
- 8001288:	4a2a      	ldr	r2, [pc, #168]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800128a:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 800128e:	8b9b      	ldrh	r3, [r3, #28]
- 8001290:	b29a      	uxth	r2, r3
- 8001292:	79fb      	ldrb	r3, [r7, #7]
- 8001294:	4927      	ldr	r1, [pc, #156]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001296:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 800129a:	f022 02f0 	bic.w	r2, r2, #240	; 0xf0
- 800129e:	b292      	uxth	r2, r2
- 80012a0:	839a      	strh	r2, [r3, #28]
-        TIM[Copy_GPT_TIMx]->CCMR2 = TIM[Copy_GPT_TIMx]->CCMR2 | (Copy_PWM_Mode<<12);
- 80012a2:	79fb      	ldrb	r3, [r7, #7]
- 80012a4:	4a23      	ldr	r2, [pc, #140]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80012a6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80012aa:	8b9b      	ldrh	r3, [r3, #28]
- 80012ac:	b29b      	uxth	r3, r3
- 80012ae:	b21a      	sxth	r2, r3
- 80012b0:	797b      	ldrb	r3, [r7, #5]
- 80012b2:	031b      	lsls	r3, r3, #12
- 80012b4:	b21b      	sxth	r3, r3
- 80012b6:	4313      	orrs	r3, r2
- 80012b8:	b219      	sxth	r1, r3
- 80012ba:	79fb      	ldrb	r3, [r7, #7]
- 80012bc:	4a1d      	ldr	r2, [pc, #116]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80012be:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80012c2:	b28a      	uxth	r2, r1
+ 80012aa:	79fb      	ldrb	r3, [r7, #7]
+ 80012ac:	4a24      	ldr	r2, [pc, #144]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80012ae:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80012b2:	8b9b      	ldrh	r3, [r3, #28]
+ 80012b4:	b29a      	uxth	r2, r3
+ 80012b6:	79fb      	ldrb	r3, [r7, #7]
+ 80012b8:	4921      	ldr	r1, [pc, #132]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80012ba:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 80012be:	f022 02f0 	bic.w	r2, r2, #240	; 0xf0
+ 80012c2:	b292      	uxth	r2, r2
  80012c4:	839a      	strh	r2, [r3, #28]
-        SET_BIT( TIM[Copy_GPT_TIMx]->CCMR2 , TIMX_CCMR2_OC4PE);
+        TIM[Copy_GPT_TIMx]->CCMR2 = TIM[Copy_GPT_TIMx]->CCMR2 | (Copy_PWM_Mode<<12);
  80012c6:	79fb      	ldrb	r3, [r7, #7]
- 80012c8:	4a1a      	ldr	r2, [pc, #104]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
+ 80012c8:	4a1d      	ldr	r2, [pc, #116]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
  80012ca:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
  80012ce:	8b9b      	ldrh	r3, [r3, #28]
- 80012d0:	b29a      	uxth	r2, r3
- 80012d2:	79fb      	ldrb	r3, [r7, #7]
- 80012d4:	4917      	ldr	r1, [pc, #92]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80012d6:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 80012da:	f442 6200 	orr.w	r2, r2, #2048	; 0x800
- 80012de:	b292      	uxth	r2, r2
- 80012e0:	839a      	strh	r2, [r3, #28]
+ 80012d0:	b29b      	uxth	r3, r3
+ 80012d2:	b21a      	sxth	r2, r3
+ 80012d4:	797b      	ldrb	r3, [r7, #5]
+ 80012d6:	031b      	lsls	r3, r3, #12
+ 80012d8:	b21b      	sxth	r3, r3
+ 80012da:	4313      	orrs	r3, r2
+ 80012dc:	b219      	sxth	r1, r3
+ 80012de:	79fb      	ldrb	r3, [r7, #7]
+ 80012e0:	4a17      	ldr	r2, [pc, #92]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80012e2:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80012e6:	b28a      	uxth	r2, r1
+ 80012e8:	839a      	strh	r2, [r3, #28]
+        SET_BIT( TIM[Copy_GPT_TIMx]->CCMR2 , TIMX_CCMR2_OC4PE);
+ 80012ea:	79fb      	ldrb	r3, [r7, #7]
+ 80012ec:	4a14      	ldr	r2, [pc, #80]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80012ee:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80012f2:	8b9b      	ldrh	r3, [r3, #28]
+ 80012f4:	b29a      	uxth	r2, r3
+ 80012f6:	79fb      	ldrb	r3, [r7, #7]
+ 80012f8:	4911      	ldr	r1, [pc, #68]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 80012fa:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 80012fe:	f442 6200 	orr.w	r2, r2, #2048	; 0x800
+ 8001302:	b292      	uxth	r2, r2
+ 8001304:	839a      	strh	r2, [r3, #28]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC4E );
- 80012e2:	79fb      	ldrb	r3, [r7, #7]
- 80012e4:	4a13      	ldr	r2, [pc, #76]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80012e6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80012ea:	8c1b      	ldrh	r3, [r3, #32]
- 80012ec:	b29a      	uxth	r2, r3
- 80012ee:	79fb      	ldrb	r3, [r7, #7]
- 80012f0:	4910      	ldr	r1, [pc, #64]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 80012f2:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 80012f6:	f442 5280 	orr.w	r2, r2, #4096	; 0x1000
- 80012fa:	b292      	uxth	r2, r2
- 80012fc:	841a      	strh	r2, [r3, #32]
+ 8001306:	79fb      	ldrb	r3, [r7, #7]
+ 8001308:	4a0d      	ldr	r2, [pc, #52]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 800130a:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 800130e:	8c1b      	ldrh	r3, [r3, #32]
+ 8001310:	b29a      	uxth	r2, r3
+ 8001312:	79fb      	ldrb	r3, [r7, #7]
+ 8001314:	490a      	ldr	r1, [pc, #40]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001316:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 800131a:	f442 5280 	orr.w	r2, r2, #4096	; 0x1000
+ 800131e:	b292      	uxth	r2, r2
+ 8001320:	841a      	strh	r2, [r3, #32]
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC4P );
- 80012fe:	79fb      	ldrb	r3, [r7, #7]
- 8001300:	4a0c      	ldr	r2, [pc, #48]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 8001302:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001306:	8c1b      	ldrh	r3, [r3, #32]
- 8001308:	b29a      	uxth	r2, r3
- 800130a:	79fb      	ldrb	r3, [r7, #7]
- 800130c:	4909      	ldr	r1, [pc, #36]	; (8001334 <GPT_TIMx_PWM_SetChannel+0x2a4>)
- 800130e:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
- 8001312:	f442 5200 	orr.w	r2, r2, #8192	; 0x2000
- 8001316:	b292      	uxth	r2, r2
- 8001318:	841a      	strh	r2, [r3, #32]
+ 8001322:	79fb      	ldrb	r3, [r7, #7]
+ 8001324:	4a06      	ldr	r2, [pc, #24]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001326:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 800132a:	8c1b      	ldrh	r3, [r3, #32]
+ 800132c:	b29a      	uxth	r2, r3
+ 800132e:	79fb      	ldrb	r3, [r7, #7]
+ 8001330:	4903      	ldr	r1, [pc, #12]	; (8001340 <GPT_TIMx_PWM_SetChannel+0x2b0>)
+ 8001332:	f851 3023 	ldr.w	r3, [r1, r3, lsl #2]
+ 8001336:	f442 5200 	orr.w	r2, r2, #8192	; 0x2000
+ 800133a:	b292      	uxth	r2, r2
+ 800133c:	841a      	strh	r2, [r3, #32]
         break;
- 800131a:	e002      	b.n	8001322 <GPT_TIMx_PWM_SetChannel+0x292>
+ 800133e:	e004      	b.n	800134a <GPT_TIMx_PWM_SetChannel+0x2ba>
+ 8001340:	20000000 	.word	0x20000000
     default:
         local_functionStates = E_NOT_OK;
- 800131c:	2300      	movs	r3, #0
- 800131e:	73fb      	strb	r3, [r7, #15]
+ 8001344:	2300      	movs	r3, #0
+ 8001346:	73fb      	strb	r3, [r7, #15]
         break;
- 8001320:	bf00      	nop
+ 8001348:	bf00      	nop
     }
     local_functionStates = E_OK;
- 8001322:	2301      	movs	r3, #1
- 8001324:	73fb      	strb	r3, [r7, #15]
+ 800134a:	2301      	movs	r3, #1
+ 800134c:	73fb      	strb	r3, [r7, #15]
     return local_functionStates;
- 8001326:	7bfb      	ldrb	r3, [r7, #15]
+ 800134e:	7bfb      	ldrb	r3, [r7, #15]
 }
- 8001328:	4618      	mov	r0, r3
- 800132a:	3714      	adds	r7, #20
- 800132c:	46bd      	mov	sp, r7
- 800132e:	bc80      	pop	{r7}
- 8001330:	4770      	bx	lr
- 8001332:	bf00      	nop
- 8001334:	20000000 	.word	0x20000000
+ 8001350:	4618      	mov	r0, r3
+ 8001352:	3714      	adds	r7, #20
+ 8001354:	46bd      	mov	sp, r7
+ 8001356:	bc80      	pop	{r7}
+ 8001358:	4770      	bx	lr
+ 800135a:	bf00      	nop
 
-08001338 <GPT_PWM_SetDutyCycle>:
+0800135c <GPT_PWM_SetDutyCycle>:
 Std_ReturnType GPT_PWM_SetDutyCycle(u8 Copy_TIMx,GPT_PWM_Channel_t Copy_Channel , u8 Copy_DutyCycle)
 {
- 8001338:	b580      	push	{r7, lr}
- 800133a:	b084      	sub	sp, #16
- 800133c:	af00      	add	r7, sp, #0
- 800133e:	4603      	mov	r3, r0
- 8001340:	71fb      	strb	r3, [r7, #7]
- 8001342:	460b      	mov	r3, r1
- 8001344:	71bb      	strb	r3, [r7, #6]
- 8001346:	4613      	mov	r3, r2
- 8001348:	717b      	strb	r3, [r7, #5]
+ 800135c:	b580      	push	{r7, lr}
+ 800135e:	b084      	sub	sp, #16
+ 8001360:	af00      	add	r7, sp, #0
+ 8001362:	4603      	mov	r3, r0
+ 8001364:	71fb      	strb	r3, [r7, #7]
+ 8001366:	460b      	mov	r3, r1
+ 8001368:	71bb      	strb	r3, [r7, #6]
+ 800136a:	4613      	mov	r3, r2
+ 800136c:	717b      	strb	r3, [r7, #5]
     Std_ReturnType local_functionStates = E_NOT_OK;
- 800134a:	2300      	movs	r3, #0
- 800134c:	73fb      	strb	r3, [r7, #15]
+ 800136e:	2300      	movs	r3, #0
+ 8001370:	73fb      	strb	r3, [r7, #15]
     u16 Local_Pulse = TIM[Copy_TIMx]->ARR * Copy_DutyCycle/100.0;
- 800134e:	79fb      	ldrb	r3, [r7, #7]
- 8001350:	4a27      	ldr	r2, [pc, #156]	; (80013f0 <GPT_PWM_SetDutyCycle+0xb8>)
- 8001352:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 8001356:	8d9b      	ldrh	r3, [r3, #44]	; 0x2c
- 8001358:	b29b      	uxth	r3, r3
- 800135a:	461a      	mov	r2, r3
- 800135c:	797b      	ldrb	r3, [r7, #5]
- 800135e:	fb02 f303 	mul.w	r3, r2, r3
- 8001362:	4618      	mov	r0, r3
- 8001364:	f7ff f856 	bl	8000414 <__aeabi_i2d>
- 8001368:	f04f 0200 	mov.w	r2, #0
- 800136c:	4b21      	ldr	r3, [pc, #132]	; (80013f4 <GPT_PWM_SetDutyCycle+0xbc>)
- 800136e:	f7ff f9e5 	bl	800073c <__aeabi_ddiv>
- 8001372:	4602      	mov	r2, r0
- 8001374:	460b      	mov	r3, r1
- 8001376:	4610      	mov	r0, r2
- 8001378:	4619      	mov	r1, r3
- 800137a:	f7ff fac7 	bl	800090c <__aeabi_d2uiz>
- 800137e:	4603      	mov	r3, r0
- 8001380:	81bb      	strh	r3, [r7, #12]
+ 8001372:	79fb      	ldrb	r3, [r7, #7]
+ 8001374:	4a27      	ldr	r2, [pc, #156]	; (8001414 <GPT_PWM_SetDutyCycle+0xb8>)
+ 8001376:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 800137a:	8d9b      	ldrh	r3, [r3, #44]	; 0x2c
+ 800137c:	b29b      	uxth	r3, r3
+ 800137e:	461a      	mov	r2, r3
+ 8001380:	797b      	ldrb	r3, [r7, #5]
+ 8001382:	fb02 f303 	mul.w	r3, r2, r3
+ 8001386:	4618      	mov	r0, r3
+ 8001388:	f7ff f844 	bl	8000414 <__aeabi_i2d>
+ 800138c:	f04f 0200 	mov.w	r2, #0
+ 8001390:	4b21      	ldr	r3, [pc, #132]	; (8001418 <GPT_PWM_SetDutyCycle+0xbc>)
+ 8001392:	f7ff f9d3 	bl	800073c <__aeabi_ddiv>
+ 8001396:	4602      	mov	r2, r0
+ 8001398:	460b      	mov	r3, r1
+ 800139a:	4610      	mov	r0, r2
+ 800139c:	4619      	mov	r1, r3
+ 800139e:	f7ff fab5 	bl	800090c <__aeabi_d2uiz>
+ 80013a2:	4603      	mov	r3, r0
+ 80013a4:	81bb      	strh	r3, [r7, #12]
     switch (Copy_Channel)
- 8001382:	79bb      	ldrb	r3, [r7, #6]
- 8001384:	2b03      	cmp	r3, #3
- 8001386:	d828      	bhi.n	80013da <GPT_PWM_SetDutyCycle+0xa2>
- 8001388:	a201      	add	r2, pc, #4	; (adr r2, 8001390 <GPT_PWM_SetDutyCycle+0x58>)
- 800138a:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 800138e:	bf00      	nop
- 8001390:	080013a1 	.word	0x080013a1
- 8001394:	080013af 	.word	0x080013af
- 8001398:	080013bd 	.word	0x080013bd
- 800139c:	080013cb 	.word	0x080013cb
+ 80013a6:	79bb      	ldrb	r3, [r7, #6]
+ 80013a8:	2b03      	cmp	r3, #3
+ 80013aa:	d828      	bhi.n	80013fe <GPT_PWM_SetDutyCycle+0xa2>
+ 80013ac:	a201      	add	r2, pc, #4	; (adr r2, 80013b4 <GPT_PWM_SetDutyCycle+0x58>)
+ 80013ae:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 80013b2:	bf00      	nop
+ 80013b4:	080013c5 	.word	0x080013c5
+ 80013b8:	080013d3 	.word	0x080013d3
+ 80013bc:	080013e1 	.word	0x080013e1
+ 80013c0:	080013ef 	.word	0x080013ef
     {
     case TIM_Channel1 :
         TIM[Copy_TIMx]->CCR1=Local_Pulse;
- 80013a0:	79fb      	ldrb	r3, [r7, #7]
- 80013a2:	4a13      	ldr	r2, [pc, #76]	; (80013f0 <GPT_PWM_SetDutyCycle+0xb8>)
- 80013a4:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80013a8:	89ba      	ldrh	r2, [r7, #12]
- 80013aa:	869a      	strh	r2, [r3, #52]	; 0x34
+ 80013c4:	79fb      	ldrb	r3, [r7, #7]
+ 80013c6:	4a13      	ldr	r2, [pc, #76]	; (8001414 <GPT_PWM_SetDutyCycle+0xb8>)
+ 80013c8:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80013cc:	89ba      	ldrh	r2, [r7, #12]
+ 80013ce:	869a      	strh	r2, [r3, #52]	; 0x34
         break;
- 80013ac:	e018      	b.n	80013e0 <GPT_PWM_SetDutyCycle+0xa8>
+ 80013d0:	e018      	b.n	8001404 <GPT_PWM_SetDutyCycle+0xa8>
     case TIM_Channel2 :
         TIM[Copy_TIMx]->CCR2=Local_Pulse;
- 80013ae:	79fb      	ldrb	r3, [r7, #7]
- 80013b0:	4a0f      	ldr	r2, [pc, #60]	; (80013f0 <GPT_PWM_SetDutyCycle+0xb8>)
- 80013b2:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80013b6:	89ba      	ldrh	r2, [r7, #12]
- 80013b8:	871a      	strh	r2, [r3, #56]	; 0x38
+ 80013d2:	79fb      	ldrb	r3, [r7, #7]
+ 80013d4:	4a0f      	ldr	r2, [pc, #60]	; (8001414 <GPT_PWM_SetDutyCycle+0xb8>)
+ 80013d6:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80013da:	89ba      	ldrh	r2, [r7, #12]
+ 80013dc:	871a      	strh	r2, [r3, #56]	; 0x38
         break;
- 80013ba:	e011      	b.n	80013e0 <GPT_PWM_SetDutyCycle+0xa8>
+ 80013de:	e011      	b.n	8001404 <GPT_PWM_SetDutyCycle+0xa8>
     case TIM_Channel3 :
         TIM[Copy_TIMx]->CCR3=Local_Pulse;
- 80013bc:	79fb      	ldrb	r3, [r7, #7]
- 80013be:	4a0c      	ldr	r2, [pc, #48]	; (80013f0 <GPT_PWM_SetDutyCycle+0xb8>)
- 80013c0:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80013c4:	89ba      	ldrh	r2, [r7, #12]
- 80013c6:	879a      	strh	r2, [r3, #60]	; 0x3c
+ 80013e0:	79fb      	ldrb	r3, [r7, #7]
+ 80013e2:	4a0c      	ldr	r2, [pc, #48]	; (8001414 <GPT_PWM_SetDutyCycle+0xb8>)
+ 80013e4:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80013e8:	89ba      	ldrh	r2, [r7, #12]
+ 80013ea:	879a      	strh	r2, [r3, #60]	; 0x3c
         break;
- 80013c8:	e00a      	b.n	80013e0 <GPT_PWM_SetDutyCycle+0xa8>
+ 80013ec:	e00a      	b.n	8001404 <GPT_PWM_SetDutyCycle+0xa8>
     case TIM_Channel4 :
         TIM[Copy_TIMx]->CCR4=Local_Pulse;
- 80013ca:	79fb      	ldrb	r3, [r7, #7]
- 80013cc:	4a08      	ldr	r2, [pc, #32]	; (80013f0 <GPT_PWM_SetDutyCycle+0xb8>)
- 80013ce:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
- 80013d2:	89ba      	ldrh	r2, [r7, #12]
- 80013d4:	f8a3 2040 	strh.w	r2, [r3, #64]	; 0x40
+ 80013ee:	79fb      	ldrb	r3, [r7, #7]
+ 80013f0:	4a08      	ldr	r2, [pc, #32]	; (8001414 <GPT_PWM_SetDutyCycle+0xb8>)
+ 80013f2:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 80013f6:	89ba      	ldrh	r2, [r7, #12]
+ 80013f8:	f8a3 2040 	strh.w	r2, [r3, #64]	; 0x40
         break;
- 80013d8:	e002      	b.n	80013e0 <GPT_PWM_SetDutyCycle+0xa8>
+ 80013fc:	e002      	b.n	8001404 <GPT_PWM_SetDutyCycle+0xa8>
     default:
         local_functionStates = E_NOT_OK;
- 80013da:	2300      	movs	r3, #0
- 80013dc:	73fb      	strb	r3, [r7, #15]
+ 80013fe:	2300      	movs	r3, #0
+ 8001400:	73fb      	strb	r3, [r7, #15]
         break;
- 80013de:	bf00      	nop
+ 8001402:	bf00      	nop
     }
     local_functionStates = E_OK;
- 80013e0:	2301      	movs	r3, #1
- 80013e2:	73fb      	strb	r3, [r7, #15]
+ 8001404:	2301      	movs	r3, #1
+ 8001406:	73fb      	strb	r3, [r7, #15]
     return local_functionStates;
- 80013e4:	7bfb      	ldrb	r3, [r7, #15]
+ 8001408:	7bfb      	ldrb	r3, [r7, #15]
 }
- 80013e6:	4618      	mov	r0, r3
- 80013e8:	3710      	adds	r7, #16
- 80013ea:	46bd      	mov	sp, r7
- 80013ec:	bd80      	pop	{r7, pc}
- 80013ee:	bf00      	nop
- 80013f0:	20000000 	.word	0x20000000
- 80013f4:	40590000 	.word	0x40590000
+ 800140a:	4618      	mov	r0, r3
+ 800140c:	3710      	adds	r7, #16
+ 800140e:	46bd      	mov	sp, r7
+ 8001410:	bd80      	pop	{r7, pc}
+ 8001412:	bf00      	nop
+ 8001414:	20000000 	.word	0x20000000
+ 8001418:	40590000 	.word	0x40590000
 
-080013f8 <MCAL_RCC_InitSysClock>:
+0800141c <MCAL_RCC_InitSysClock>:
 #include "RCC_private.h"
 #include "RCC_config.h"
 #include "RCC_interface.h"
 /*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType MCAL_RCC_InitSysClock(void)
 {
- 80013f8:	b480      	push	{r7}
- 80013fa:	b083      	sub	sp, #12
- 80013fc:	af00      	add	r7, sp, #0
+ 800141c:	b480      	push	{r7}
+ 800141e:	b083      	sub	sp, #12
+ 8001420:	af00      	add	r7, sp, #0
     Std_ReturnType local_functionStates = E_NOT_OK;
- 80013fe:	2300      	movs	r3, #0
- 8001400:	71fb      	strb	r3, [r7, #7]
+ 8001422:	2300      	movs	r3, #0
+ 8001424:	71fb      	strb	r3, [r7, #7]
     #if RCC_SYSCLK == RCC_HSI
         /* Enable HSI */
         SET_BIT( RCC_CR , RCC_CR_HSION);
- 8001402:	4b10      	ldr	r3, [pc, #64]	; (8001444 <MCAL_RCC_InitSysClock+0x4c>)
- 8001404:	681b      	ldr	r3, [r3, #0]
- 8001406:	4a0f      	ldr	r2, [pc, #60]	; (8001444 <MCAL_RCC_InitSysClock+0x4c>)
- 8001408:	f043 0301 	orr.w	r3, r3, #1
- 800140c:	6013      	str	r3, [r2, #0]
+ 8001426:	4b10      	ldr	r3, [pc, #64]	; (8001468 <MCAL_RCC_InitSysClock+0x4c>)
+ 8001428:	681b      	ldr	r3, [r3, #0]
+ 800142a:	4a0f      	ldr	r2, [pc, #60]	; (8001468 <MCAL_RCC_InitSysClock+0x4c>)
+ 800142c:	f043 0301 	orr.w	r3, r3, #1
+ 8001430:	6013      	str	r3, [r2, #0]
         /* Wait until the clock is stable */
         while( !GET_BIT( RCC_CR , RCC_CR_HSIRDY ) );
- 800140e:	bf00      	nop
- 8001410:	4b0c      	ldr	r3, [pc, #48]	; (8001444 <MCAL_RCC_InitSysClock+0x4c>)
- 8001412:	681b      	ldr	r3, [r3, #0]
- 8001414:	f003 0302 	and.w	r3, r3, #2
- 8001418:	2b00      	cmp	r3, #0
- 800141a:	d0f9      	beq.n	8001410 <MCAL_RCC_InitSysClock+0x18>
+ 8001432:	bf00      	nop
+ 8001434:	4b0c      	ldr	r3, [pc, #48]	; (8001468 <MCAL_RCC_InitSysClock+0x4c>)
+ 8001436:	681b      	ldr	r3, [r3, #0]
+ 8001438:	f003 0302 	and.w	r3, r3, #2
+ 800143c:	2b00      	cmp	r3, #0
+ 800143e:	d0f9      	beq.n	8001434 <MCAL_RCC_InitSysClock+0x18>
         /* Select the HSI As system CLOCK */
         CLR_BIT( RCC_CFGR , 0 );
- 800141c:	4b0a      	ldr	r3, [pc, #40]	; (8001448 <MCAL_RCC_InitSysClock+0x50>)
- 800141e:	681b      	ldr	r3, [r3, #0]
- 8001420:	4a09      	ldr	r2, [pc, #36]	; (8001448 <MCAL_RCC_InitSysClock+0x50>)
- 8001422:	f023 0301 	bic.w	r3, r3, #1
- 8001426:	6013      	str	r3, [r2, #0]
+ 8001440:	4b0a      	ldr	r3, [pc, #40]	; (800146c <MCAL_RCC_InitSysClock+0x50>)
+ 8001442:	681b      	ldr	r3, [r3, #0]
+ 8001444:	4a09      	ldr	r2, [pc, #36]	; (800146c <MCAL_RCC_InitSysClock+0x50>)
+ 8001446:	f023 0301 	bic.w	r3, r3, #1
+ 800144a:	6013      	str	r3, [r2, #0]
         CLR_BIT( RCC_CFGR , 1 );
- 8001428:	4b07      	ldr	r3, [pc, #28]	; (8001448 <MCAL_RCC_InitSysClock+0x50>)
- 800142a:	681b      	ldr	r3, [r3, #0]
- 800142c:	4a06      	ldr	r2, [pc, #24]	; (8001448 <MCAL_RCC_InitSysClock+0x50>)
- 800142e:	f023 0302 	bic.w	r3, r3, #2
- 8001432:	6013      	str	r3, [r2, #0]
+ 800144c:	4b07      	ldr	r3, [pc, #28]	; (800146c <MCAL_RCC_InitSysClock+0x50>)
+ 800144e:	681b      	ldr	r3, [r3, #0]
+ 8001450:	4a06      	ldr	r2, [pc, #24]	; (800146c <MCAL_RCC_InitSysClock+0x50>)
+ 8001452:	f023 0302 	bic.w	r3, r3, #2
+ 8001456:	6013      	str	r3, [r2, #0]
         local_functionStates = E_OK;
- 8001434:	2301      	movs	r3, #1
- 8001436:	71fb      	strb	r3, [r7, #7]
+ 8001458:	2301      	movs	r3, #1
+ 800145a:	71fb      	strb	r3, [r7, #7]
             #error "Wrong Choice !!"
         #endif /* RCC_PLL_SRC */
     #else 
         #error "Wrong Choice !!"
     #endif /* RCC_SYSCLK */
     return local_functionStates;
- 8001438:	79fb      	ldrb	r3, [r7, #7]
+ 800145c:	79fb      	ldrb	r3, [r7, #7]
 }
- 800143a:	4618      	mov	r0, r3
- 800143c:	370c      	adds	r7, #12
- 800143e:	46bd      	mov	sp, r7
- 8001440:	bc80      	pop	{r7}
- 8001442:	4770      	bx	lr
- 8001444:	40021000 	.word	0x40021000
- 8001448:	40021004 	.word	0x40021004
+ 800145e:	4618      	mov	r0, r3
+ 8001460:	370c      	adds	r7, #12
+ 8001462:	46bd      	mov	sp, r7
+ 8001464:	bc80      	pop	{r7}
+ 8001466:	4770      	bx	lr
+ 8001468:	40021000 	.word	0x40021000
+ 800146c:	40021004 	.word	0x40021004
 
-0800144c <MCAL_Rcc_EnablePrephiral>:
+08001470 <MCAL_Rcc_EnablePrephiral>:
 /*====================================================   END_ FUNCTION   ====================================================*/
 /*====================================================   Start_FUNCTION   ====================================================*/
 
 Std_ReturnType MCAL_Rcc_EnablePrephiral(u8 Copy_PeripheralId , u8 Copy_BusId)
 {
- 800144c:	b480      	push	{r7}
- 800144e:	b085      	sub	sp, #20
- 8001450:	af00      	add	r7, sp, #0
- 8001452:	4603      	mov	r3, r0
- 8001454:	460a      	mov	r2, r1
- 8001456:	71fb      	strb	r3, [r7, #7]
- 8001458:	4613      	mov	r3, r2
- 800145a:	71bb      	strb	r3, [r7, #6]
+ 8001470:	b480      	push	{r7}
+ 8001472:	b085      	sub	sp, #20
+ 8001474:	af00      	add	r7, sp, #0
+ 8001476:	4603      	mov	r3, r0
+ 8001478:	460a      	mov	r2, r1
+ 800147a:	71fb      	strb	r3, [r7, #7]
+ 800147c:	4613      	mov	r3, r2
+ 800147e:	71bb      	strb	r3, [r7, #6]
     Std_ReturnType local_functionStates = E_NOT_OK;
- 800145c:	2300      	movs	r3, #0
- 800145e:	73fb      	strb	r3, [r7, #15]
+ 8001480:	2300      	movs	r3, #0
+ 8001482:	73fb      	strb	r3, [r7, #15]
     switch (Copy_BusId)
- 8001460:	79bb      	ldrb	r3, [r7, #6]
- 8001462:	2b02      	cmp	r3, #2
- 8001464:	d020      	beq.n	80014a8 <MCAL_Rcc_EnablePrephiral+0x5c>
- 8001466:	2b02      	cmp	r3, #2
- 8001468:	dc2b      	bgt.n	80014c2 <MCAL_Rcc_EnablePrephiral+0x76>
- 800146a:	2b00      	cmp	r3, #0
- 800146c:	d002      	beq.n	8001474 <MCAL_Rcc_EnablePrephiral+0x28>
- 800146e:	2b01      	cmp	r3, #1
- 8001470:	d00d      	beq.n	800148e <MCAL_Rcc_EnablePrephiral+0x42>
- 8001472:	e026      	b.n	80014c2 <MCAL_Rcc_EnablePrephiral+0x76>
+ 8001484:	79bb      	ldrb	r3, [r7, #6]
+ 8001486:	2b02      	cmp	r3, #2
+ 8001488:	d020      	beq.n	80014cc <MCAL_Rcc_EnablePrephiral+0x5c>
+ 800148a:	2b02      	cmp	r3, #2
+ 800148c:	dc2b      	bgt.n	80014e6 <MCAL_Rcc_EnablePrephiral+0x76>
+ 800148e:	2b00      	cmp	r3, #0
+ 8001490:	d002      	beq.n	8001498 <MCAL_Rcc_EnablePrephiral+0x28>
+ 8001492:	2b01      	cmp	r3, #1
+ 8001494:	d00d      	beq.n	80014b2 <MCAL_Rcc_EnablePrephiral+0x42>
+ 8001496:	e026      	b.n	80014e6 <MCAL_Rcc_EnablePrephiral+0x76>
     {
     case RCC_AHB:
     SET_BIT( RCC_AHBENR , Copy_PeripheralId );
- 8001474:	4b17      	ldr	r3, [pc, #92]	; (80014d4 <MCAL_Rcc_EnablePrephiral+0x88>)
- 8001476:	681b      	ldr	r3, [r3, #0]
- 8001478:	79fa      	ldrb	r2, [r7, #7]
- 800147a:	2101      	movs	r1, #1
- 800147c:	fa01 f202 	lsl.w	r2, r1, r2
- 8001480:	4611      	mov	r1, r2
- 8001482:	4a14      	ldr	r2, [pc, #80]	; (80014d4 <MCAL_Rcc_EnablePrephiral+0x88>)
- 8001484:	430b      	orrs	r3, r1
- 8001486:	6013      	str	r3, [r2, #0]
+ 8001498:	4b17      	ldr	r3, [pc, #92]	; (80014f8 <MCAL_Rcc_EnablePrephiral+0x88>)
+ 800149a:	681b      	ldr	r3, [r3, #0]
+ 800149c:	79fa      	ldrb	r2, [r7, #7]
+ 800149e:	2101      	movs	r1, #1
+ 80014a0:	fa01 f202 	lsl.w	r2, r1, r2
+ 80014a4:	4611      	mov	r1, r2
+ 80014a6:	4a14      	ldr	r2, [pc, #80]	; (80014f8 <MCAL_Rcc_EnablePrephiral+0x88>)
+ 80014a8:	430b      	orrs	r3, r1
+ 80014aa:	6013      	str	r3, [r2, #0]
     local_functionStates = E_OK;
- 8001488:	2301      	movs	r3, #1
- 800148a:	73fb      	strb	r3, [r7, #15]
+ 80014ac:	2301      	movs	r3, #1
+ 80014ae:	73fb      	strb	r3, [r7, #15]
     break;
- 800148c:	e01c      	b.n	80014c8 <MCAL_Rcc_EnablePrephiral+0x7c>
+ 80014b0:	e01c      	b.n	80014ec <MCAL_Rcc_EnablePrephiral+0x7c>
     case RCC_APB1:
     SET_BIT ( RCC_AHBENR , Copy_PeripheralId );
- 800148e:	4b11      	ldr	r3, [pc, #68]	; (80014d4 <MCAL_Rcc_EnablePrephiral+0x88>)
- 8001490:	681b      	ldr	r3, [r3, #0]
- 8001492:	79fa      	ldrb	r2, [r7, #7]
- 8001494:	2101      	movs	r1, #1
- 8001496:	fa01 f202 	lsl.w	r2, r1, r2
- 800149a:	4611      	mov	r1, r2
- 800149c:	4a0d      	ldr	r2, [pc, #52]	; (80014d4 <MCAL_Rcc_EnablePrephiral+0x88>)
- 800149e:	430b      	orrs	r3, r1
- 80014a0:	6013      	str	r3, [r2, #0]
+ 80014b2:	4b11      	ldr	r3, [pc, #68]	; (80014f8 <MCAL_Rcc_EnablePrephiral+0x88>)
+ 80014b4:	681b      	ldr	r3, [r3, #0]
+ 80014b6:	79fa      	ldrb	r2, [r7, #7]
+ 80014b8:	2101      	movs	r1, #1
+ 80014ba:	fa01 f202 	lsl.w	r2, r1, r2
+ 80014be:	4611      	mov	r1, r2
+ 80014c0:	4a0d      	ldr	r2, [pc, #52]	; (80014f8 <MCAL_Rcc_EnablePrephiral+0x88>)
+ 80014c2:	430b      	orrs	r3, r1
+ 80014c4:	6013      	str	r3, [r2, #0]
     local_functionStates = E_OK;
- 80014a2:	2301      	movs	r3, #1
- 80014a4:	73fb      	strb	r3, [r7, #15]
+ 80014c6:	2301      	movs	r3, #1
+ 80014c8:	73fb      	strb	r3, [r7, #15]
     break;
- 80014a6:	e00f      	b.n	80014c8 <MCAL_Rcc_EnablePrephiral+0x7c>
+ 80014ca:	e00f      	b.n	80014ec <MCAL_Rcc_EnablePrephiral+0x7c>
     case RCC_APB2:
     SET_BIT ( RCC_APB2ENR , Copy_PeripheralId );
- 80014a8:	4b0b      	ldr	r3, [pc, #44]	; (80014d8 <MCAL_Rcc_EnablePrephiral+0x8c>)
- 80014aa:	681b      	ldr	r3, [r3, #0]
- 80014ac:	79fa      	ldrb	r2, [r7, #7]
- 80014ae:	2101      	movs	r1, #1
- 80014b0:	fa01 f202 	lsl.w	r2, r1, r2
- 80014b4:	4611      	mov	r1, r2
- 80014b6:	4a08      	ldr	r2, [pc, #32]	; (80014d8 <MCAL_Rcc_EnablePrephiral+0x8c>)
- 80014b8:	430b      	orrs	r3, r1
- 80014ba:	6013      	str	r3, [r2, #0]
+ 80014cc:	4b0b      	ldr	r3, [pc, #44]	; (80014fc <MCAL_Rcc_EnablePrephiral+0x8c>)
+ 80014ce:	681b      	ldr	r3, [r3, #0]
+ 80014d0:	79fa      	ldrb	r2, [r7, #7]
+ 80014d2:	2101      	movs	r1, #1
+ 80014d4:	fa01 f202 	lsl.w	r2, r1, r2
+ 80014d8:	4611      	mov	r1, r2
+ 80014da:	4a08      	ldr	r2, [pc, #32]	; (80014fc <MCAL_Rcc_EnablePrephiral+0x8c>)
+ 80014dc:	430b      	orrs	r3, r1
+ 80014de:	6013      	str	r3, [r2, #0]
     local_functionStates = E_OK;
- 80014bc:	2301      	movs	r3, #1
- 80014be:	73fb      	strb	r3, [r7, #15]
+ 80014e0:	2301      	movs	r3, #1
+ 80014e2:	73fb      	strb	r3, [r7, #15]
     break;
- 80014c0:	e002      	b.n	80014c8 <MCAL_Rcc_EnablePrephiral+0x7c>
+ 80014e4:	e002      	b.n	80014ec <MCAL_Rcc_EnablePrephiral+0x7c>
     default:
     local_functionStates =E_NOT_OK;
- 80014c2:	2300      	movs	r3, #0
- 80014c4:	73fb      	strb	r3, [r7, #15]
+ 80014e6:	2300      	movs	r3, #0
+ 80014e8:	73fb      	strb	r3, [r7, #15]
     break;
- 80014c6:	bf00      	nop
+ 80014ea:	bf00      	nop
     }
     return local_functionStates;
- 80014c8:	7bfb      	ldrb	r3, [r7, #15]
+ 80014ec:	7bfb      	ldrb	r3, [r7, #15]
 }
- 80014ca:	4618      	mov	r0, r3
- 80014cc:	3714      	adds	r7, #20
- 80014ce:	46bd      	mov	sp, r7
- 80014d0:	bc80      	pop	{r7}
- 80014d2:	4770      	bx	lr
- 80014d4:	40021014 	.word	0x40021014
- 80014d8:	40021018 	.word	0x40021018
+ 80014ee:	4618      	mov	r0, r3
+ 80014f0:	3714      	adds	r7, #20
+ 80014f2:	46bd      	mov	sp, r7
+ 80014f4:	bc80      	pop	{r7}
+ 80014f6:	4770      	bx	lr
+ 80014f8:	40021014 	.word	0x40021014
+ 80014fc:	40021018 	.word	0x40021018
 
-080014dc <main>:
-#include "RCC_interface.h"
+08001500 <MCAL_SYSTICK_vINIT>:
+    SYSTICK->LOAD = Copy_Ticks;
+    Local_FunctionStatus= E_OK;
+    return Local_FunctionStatus;
+}
+Std_ReturnType MCAL_SYSTICK_vINIT()
+{
+ 8001500:	b480      	push	{r7}
+ 8001502:	b083      	sub	sp, #12
+ 8001504:	af00      	add	r7, sp, #0
+    Std_ReturnType Local_FunctionStatus= E_NOT_OK;
+ 8001506:	2300      	movs	r3, #0
+ 8001508:	71fb      	strb	r3, [r7, #7]
+    /**< Disable SysTick timer */
+    SYSTICK->CTRL &= ~SYSTICK_CTRL_ENABLE_MASK;
+ 800150a:	4b0d      	ldr	r3, [pc, #52]	; (8001540 <MCAL_SYSTICK_vINIT+0x40>)
+ 800150c:	681b      	ldr	r3, [r3, #0]
+ 800150e:	4a0c      	ldr	r2, [pc, #48]	; (8001540 <MCAL_SYSTICK_vINIT+0x40>)
+ 8001510:	f023 0301 	bic.w	r3, r3, #1
+ 8001514:	6013      	str	r3, [r2, #0]
+    /**< Configure SysTick timer to use the processor clock */
+    #if SYSTICK_AHB_CLKSRC == SYSTICK_CLKSRC_DIV_1
+        SYSTICK->CTRL |= SYSTICK_CTRL_CLKSRC_MASK; /**< Set bit 2 to use the processor clock */
+    #elif SYSTICK_AHB_CLKSRC == SYSTICK_CLKSRC_DIV_8
+        SYSTICK->CTRL &= ~SYSTICK_CTRL_CLKSRC_MASK;  /**< Clear bit 2 to use the processor clock/8 */
+ 8001516:	4b0a      	ldr	r3, [pc, #40]	; (8001540 <MCAL_SYSTICK_vINIT+0x40>)
+ 8001518:	681b      	ldr	r3, [r3, #0]
+ 800151a:	4a09      	ldr	r2, [pc, #36]	; (8001540 <MCAL_SYSTICK_vINIT+0x40>)
+ 800151c:	f023 0304 	bic.w	r3, r3, #4
+ 8001520:	6013      	str	r3, [r2, #0]
+    #else
+        #error "Invalid STK_CTRL_CLKSOURCE value. Please choose STK_CTRL_CLKSOURCE_1 or STK_CTRL_CLKSOURCE_8."
+    #endif
+    /**< Generate interrupt when it reaches zero */
+    #if SYSTICK_TICKINT == SYSTICK_TICKINT_ENABLED
+        SYSTICK->CTRL |= SYSTICK_CTRL_TICKINT_MASK; /**< Set bit 1 to enable interrupt when the counter reaches zero */
+ 8001522:	4b07      	ldr	r3, [pc, #28]	; (8001540 <MCAL_SYSTICK_vINIT+0x40>)
+ 8001524:	681b      	ldr	r3, [r3, #0]
+ 8001526:	4a06      	ldr	r2, [pc, #24]	; (8001540 <MCAL_SYSTICK_vINIT+0x40>)
+ 8001528:	f043 0302 	orr.w	r3, r3, #2
+ 800152c:	6013      	str	r3, [r2, #0]
+    #elif SYSTICK_TICKINT == SYSTICK_TICKINT_DISABLED
+        SYSTICK->CTRL &= ~SYSTICK_CTRL_TICKINT_MASK; /**< Clear bit 1 to disable interrupt when the counter reaches zero */
+    #else
+        #error "Invalid STK_CTRL_TICKINT value. Please choose STK_CTRL_TICKINT_ENABLE or STK_CTRL_TICKINT_DISABLE."
+    #endif
+    Local_FunctionStatus= E_OK;
+ 800152e:	2301      	movs	r3, #1
+ 8001530:	71fb      	strb	r3, [r7, #7]
+    return Local_FunctionStatus;
+ 8001532:	79fb      	ldrb	r3, [r7, #7]
+}
+ 8001534:	4618      	mov	r0, r3
+ 8001536:	370c      	adds	r7, #12
+ 8001538:	46bd      	mov	sp, r7
+ 800153a:	bc80      	pop	{r7}
+ 800153c:	4770      	bx	lr
+ 800153e:	bf00      	nop
+ 8001540:	e000e010 	.word	0xe000e010
+
+08001544 <SysTick_Handler>:
+/**
+ * @defgroup IRQ_Handlers IRQ Handlers
+ * @{
+ */
+void SysTick_Handler(void)
+{
+ 8001544:	b580      	push	{r7, lr}
+ 8001546:	af00      	add	r7, sp, #0
+    if (SYSTICK_Callback != NULL)
+ 8001548:	4b12      	ldr	r3, [pc, #72]	; (8001594 <SysTick_Handler+0x50>)
+ 800154a:	681b      	ldr	r3, [r3, #0]
+ 800154c:	2b00      	cmp	r3, #0
+ 800154e:	d01e      	beq.n	800158e <SysTick_Handler+0x4a>
+    {
+        if (SYSTICK_ModeOfInterval == SYSTICK_SINGLE_INTERVAL)
+ 8001550:	4b11      	ldr	r3, [pc, #68]	; (8001598 <SysTick_Handler+0x54>)
+ 8001552:	781b      	ldrb	r3, [r3, #0]
+ 8001554:	2b00      	cmp	r3, #0
+ 8001556:	d111      	bne.n	800157c <SysTick_Handler+0x38>
+        {
+            /**< Disable interrupt when the counter reaches zero */
+            SYSTICK->CTRL &= ~SYSTICK_CTRL_TICKINT_MASK;
+ 8001558:	4b10      	ldr	r3, [pc, #64]	; (800159c <SysTick_Handler+0x58>)
+ 800155a:	681b      	ldr	r3, [r3, #0]
+ 800155c:	4a0f      	ldr	r2, [pc, #60]	; (800159c <SysTick_Handler+0x58>)
+ 800155e:	f023 0302 	bic.w	r3, r3, #2
+ 8001562:	6013      	str	r3, [r2, #0]
+            /**< Disable SysTick timer */
+            SYSTICK->CTRL &= ~SYSTICK_CTRL_ENABLE_MASK;
+ 8001564:	4b0d      	ldr	r3, [pc, #52]	; (800159c <SysTick_Handler+0x58>)
+ 8001566:	681b      	ldr	r3, [r3, #0]
+ 8001568:	4a0c      	ldr	r2, [pc, #48]	; (800159c <SysTick_Handler+0x58>)
+ 800156a:	f023 0301 	bic.w	r3, r3, #1
+ 800156e:	6013      	str	r3, [r2, #0]
+            /**< Clear the current value */
+            SYSTICK->LOAD=0;
+ 8001570:	4b0a      	ldr	r3, [pc, #40]	; (800159c <SysTick_Handler+0x58>)
+ 8001572:	2200      	movs	r2, #0
+ 8001574:	605a      	str	r2, [r3, #4]
+            /**< Set the reload value to 0 */
+            SYSTICK->VAL=0;
+ 8001576:	4b09      	ldr	r3, [pc, #36]	; (800159c <SysTick_Handler+0x58>)
+ 8001578:	2200      	movs	r2, #0
+ 800157a:	609a      	str	r2, [r3, #8]
+        }
+        /**< Callback notification */
+        SYSTICK_Callback();
+ 800157c:	4b05      	ldr	r3, [pc, #20]	; (8001594 <SysTick_Handler+0x50>)
+ 800157e:	681b      	ldr	r3, [r3, #0]
+ 8001580:	4798      	blx	r3
+        /**< Clear the count/interrupt flag */
+        SYSTICK->CTRL &= ~SYSTICK_CTRL_COUNTFLAG_MASK;
+ 8001582:	4b06      	ldr	r3, [pc, #24]	; (800159c <SysTick_Handler+0x58>)
+ 8001584:	681b      	ldr	r3, [r3, #0]
+ 8001586:	4a05      	ldr	r2, [pc, #20]	; (800159c <SysTick_Handler+0x58>)
+ 8001588:	f423 3380 	bic.w	r3, r3, #65536	; 0x10000
+ 800158c:	6013      	str	r3, [r2, #0]
+    }
+}
+ 800158e:	bf00      	nop
+ 8001590:	bd80      	pop	{r7, pc}
+ 8001592:	bf00      	nop
+ 8001594:	20000034 	.word	0x20000034
+ 8001598:	20000038 	.word	0x20000038
+ 800159c:	e000e010 	.word	0xe000e010
+
+080015a0 <main>:
 #include "GPIO_interface.h"
 #include "GPT_interface.h"
+#include "SYSTICK_interface.h"
 
 int main(void)
 {
- 80014dc:	b580      	push	{r7, lr}
- 80014de:	b086      	sub	sp, #24
- 80014e0:	af00      	add	r7, sp, #0
+ 80015a0:	b580      	push	{r7, lr}
+ 80015a2:	b086      	sub	sp, #24
+ 80015a4:	af00      	add	r7, sp, #0
 	MCAL_RCC_InitSysClock();
- 80014e2:	f7ff ff89 	bl	80013f8 <MCAL_RCC_InitSysClock>
+ 80015a6:	f7ff ff39 	bl	800141c <MCAL_RCC_InitSysClock>
 	MCAL_Rcc_EnablePrephiral(RCC_APB2_IOPAEN, RCC_APB2);
- 80014e6:	2102      	movs	r1, #2
- 80014e8:	2002      	movs	r0, #2
- 80014ea:	f7ff ffaf 	bl	800144c <MCAL_Rcc_EnablePrephiral>
+ 80015aa:	2102      	movs	r1, #2
+ 80015ac:	2002      	movs	r0, #2
+ 80015ae:	f7ff ff5f 	bl	8001470 <MCAL_Rcc_EnablePrephiral>
 	MCAL_Rcc_EnablePrephiral(RCC_APB2_TIM1EN, RCC_APB2);
- 80014ee:	2102      	movs	r1, #2
- 80014f0:	200b      	movs	r0, #11
- 80014f2:	f7ff ffab 	bl	800144c <MCAL_Rcc_EnablePrephiral>
+ 80015b2:	2102      	movs	r1, #2
+ 80015b4:	200b      	movs	r0, #11
+ 80015b6:	f7ff ff5b 	bl	8001470 <MCAL_Rcc_EnablePrephiral>
 	MCAL_Rcc_EnablePrephiral(RCC_APB2_AFIOEN, RCC_APB2);
- 80014f6:	2102      	movs	r1, #2
- 80014f8:	2000      	movs	r0, #0
- 80014fa:	f7ff ffa7 	bl	800144c <MCAL_Rcc_EnablePrephiral>
+ 80015ba:	2102      	movs	r1, #2
+ 80015bc:	2000      	movs	r0, #0
+ 80015be:	f7ff ff57 	bl	8001470 <MCAL_Rcc_EnablePrephiral>
 	MCAL_GPIO_SetPinMode(GPIO_PORTA, GPIO_PIN8, GPIO_OUTPUT_HIGH_SPEED_AF_PP);
- 80014fe:	220b      	movs	r2, #11
- 8001500:	2108      	movs	r1, #8
- 8001502:	2000      	movs	r0, #0
- 8001504:	f7ff fa22 	bl	800094c <MCAL_GPIO_SetPinMode>
+ 80015c2:	220b      	movs	r2, #11
+ 80015c4:	2108      	movs	r1, #8
+ 80015c6:	2000      	movs	r0, #0
+ 80015c8:	f7ff f9c0 	bl	800094c <MCAL_GPIO_SetPinMode>
 	GPT_Config_t TIM1_config={.ARR=999
- 8001508:	4a1c      	ldr	r2, [pc, #112]	; (800157c <main+0xa0>)
- 800150a:	f107 0308 	add.w	r3, r7, #8
- 800150e:	ca07      	ldmia	r2, {r0, r1, r2}
- 8001510:	c303      	stmia	r3!, {r0, r1}
- 8001512:	801a      	strh	r2, [r3, #0]
+ 80015cc:	4a1a      	ldr	r2, [pc, #104]	; (8001638 <main+0x98>)
+ 80015ce:	f107 0308 	add.w	r3, r7, #8
+ 80015d2:	ca07      	ldmia	r2, {r0, r1, r2}
+ 80015d4:	c303      	stmia	r3!, {r0, r1}
+ 80015d6:	801a      	strh	r2, [r3, #0]
 			,.Prescalar=31
 			,.AllignMode=Edge_AllignedMode
 			,.GPT_DIR=UPCounter
 			,.INTState=GPT_Enaple_Interrupt
 			,.CLK_Factor=DIV_1};
 	GPT_TIMx_init(TIM1, &TIM1_config);
- 8001514:	f107 0308 	add.w	r3, r7, #8
- 8001518:	4619      	mov	r1, r3
- 800151a:	2000      	movs	r0, #0
- 800151c:	f7ff fafc 	bl	8000b18 <GPT_TIMx_init>
+ 80015d8:	f107 0308 	add.w	r3, r7, #8
+ 80015dc:	4619      	mov	r1, r3
+ 80015de:	2000      	movs	r0, #0
+ 80015e0:	f7ff fa9a 	bl	8000b18 <GPT_TIMx_init>
 	GPT_PWM_Config_t TIM1_PWM_CONFIG ={
- 8001520:	4a17      	ldr	r2, [pc, #92]	; (8001580 <main+0xa4>)
- 8001522:	463b      	mov	r3, r7
- 8001524:	e892 0003 	ldmia.w	r2, {r0, r1}
- 8001528:	e883 0003 	stmia.w	r3, {r0, r1}
+ 80015e4:	4a15      	ldr	r2, [pc, #84]	; (800163c <main+0x9c>)
+ 80015e6:	463b      	mov	r3, r7
+ 80015e8:	e892 0003 	ldmia.w	r2, {r0, r1}
+ 80015ec:	e883 0003 	stmia.w	r3, {r0, r1}
 			.ARR=999,
 			.Freq=1,
 			.PWM_Channel=TIM_Channel1,
 			.PWM_Mode=PWM_11
 	};
 	GPT_PWM_INIT(TIM1,&TIM1_PWM_CONFIG);
- 800152c:	463b      	mov	r3, r7
- 800152e:	4619      	mov	r1, r3
- 8001530:	2000      	movs	r0, #0
- 8001532:	f7ff fd0d 	bl	8000f50 <GPT_PWM_INIT>
-	GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, 50);
- 8001536:	2232      	movs	r2, #50	; 0x32
- 8001538:	2100      	movs	r1, #0
- 800153a:	2000      	movs	r0, #0
- 800153c:	f7ff fefc 	bl	8001338 <GPT_PWM_SetDutyCycle>
+ 80015f0:	463b      	mov	r3, r7
+ 80015f2:	4619      	mov	r1, r3
+ 80015f4:	2000      	movs	r0, #0
+ 80015f6:	f7ff fcab 	bl	8000f50 <GPT_PWM_INIT>
+	MCAL_SYSTICK_vINIT();
+ 80015fa:	f7ff ff81 	bl	8001500 <MCAL_SYSTICK_vINIT>
     /* Loop forever */
 	for(;;)
 	{
 		for(u16 i=0;i<=100;i++)
- 8001540:	2300      	movs	r3, #0
- 8001542:	82fb      	strh	r3, [r7, #22]
- 8001544:	e009      	b.n	800155a <main+0x7e>
+ 80015fe:	2300      	movs	r3, #0
+ 8001600:	82fb      	strh	r3, [r7, #22]
+ 8001602:	e009      	b.n	8001618 <main+0x78>
 		{
 			GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, i);
- 8001546:	8afb      	ldrh	r3, [r7, #22]
- 8001548:	b2db      	uxtb	r3, r3
- 800154a:	461a      	mov	r2, r3
- 800154c:	2100      	movs	r1, #0
- 800154e:	2000      	movs	r0, #0
- 8001550:	f7ff fef2 	bl	8001338 <GPT_PWM_SetDutyCycle>
+ 8001604:	8afb      	ldrh	r3, [r7, #22]
+ 8001606:	b2db      	uxtb	r3, r3
+ 8001608:	461a      	mov	r2, r3
+ 800160a:	2100      	movs	r1, #0
+ 800160c:	2000      	movs	r0, #0
+ 800160e:	f7ff fea5 	bl	800135c <GPT_PWM_SetDutyCycle>
 		for(u16 i=0;i<=100;i++)
- 8001554:	8afb      	ldrh	r3, [r7, #22]
- 8001556:	3301      	adds	r3, #1
- 8001558:	82fb      	strh	r3, [r7, #22]
- 800155a:	8afb      	ldrh	r3, [r7, #22]
- 800155c:	2b64      	cmp	r3, #100	; 0x64
- 800155e:	d9f2      	bls.n	8001546 <main+0x6a>
+ 8001612:	8afb      	ldrh	r3, [r7, #22]
+ 8001614:	3301      	adds	r3, #1
+ 8001616:	82fb      	strh	r3, [r7, #22]
+ 8001618:	8afb      	ldrh	r3, [r7, #22]
+ 800161a:	2b64      	cmp	r3, #100	; 0x64
+ 800161c:	d9f2      	bls.n	8001604 <main+0x64>
 		}
 		for(u16 i=100;i>=0;i--)
- 8001560:	2364      	movs	r3, #100	; 0x64
- 8001562:	82bb      	strh	r3, [r7, #20]
+ 800161e:	2364      	movs	r3, #100	; 0x64
+ 8001620:	82bb      	strh	r3, [r7, #20]
 		{
 			GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, i);
- 8001564:	8abb      	ldrh	r3, [r7, #20]
- 8001566:	b2db      	uxtb	r3, r3
- 8001568:	461a      	mov	r2, r3
- 800156a:	2100      	movs	r1, #0
- 800156c:	2000      	movs	r0, #0
- 800156e:	f7ff fee3 	bl	8001338 <GPT_PWM_SetDutyCycle>
+ 8001622:	8abb      	ldrh	r3, [r7, #20]
+ 8001624:	b2db      	uxtb	r3, r3
+ 8001626:	461a      	mov	r2, r3
+ 8001628:	2100      	movs	r1, #0
+ 800162a:	2000      	movs	r0, #0
+ 800162c:	f7ff fe96 	bl	800135c <GPT_PWM_SetDutyCycle>
 		for(u16 i=100;i>=0;i--)
- 8001572:	8abb      	ldrh	r3, [r7, #20]
- 8001574:	3b01      	subs	r3, #1
- 8001576:	82bb      	strh	r3, [r7, #20]
+ 8001630:	8abb      	ldrh	r3, [r7, #20]
+ 8001632:	3b01      	subs	r3, #1
+ 8001634:	82bb      	strh	r3, [r7, #20]
 			GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, i);
- 8001578:	e7f4      	b.n	8001564 <main+0x88>
- 800157a:	bf00      	nop
- 800157c:	08001638 	.word	0x08001638
- 8001580:	08001644 	.word	0x08001644
+ 8001636:	e7f4      	b.n	8001622 <main+0x82>
+ 8001638:	080016f4 	.word	0x080016f4
+ 800163c:	08001700 	.word	0x08001700
 
-08001584 <Reset_Handler>:
+08001640 <Reset_Handler>:
 
   .section .text.Reset_Handler
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
   ldr   r0, =_estack
- 8001584:	480d      	ldr	r0, [pc, #52]	; (80015bc <LoopForever+0x2>)
+ 8001640:	480d      	ldr	r0, [pc, #52]	; (8001678 <LoopForever+0x2>)
   mov   sp, r0          /* set stack pointer */
- 8001586:	4685      	mov	sp, r0
+ 8001642:	4685      	mov	sp, r0
 /* Call the clock system initialization function.*/
   bl  SystemInit
- 8001588:	f3af 8000 	nop.w
+ 8001644:	f3af 8000 	nop.w
 
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
- 800158c:	480c      	ldr	r0, [pc, #48]	; (80015c0 <LoopForever+0x6>)
+ 8001648:	480c      	ldr	r0, [pc, #48]	; (800167c <LoopForever+0x6>)
   ldr r1, =_edata
- 800158e:	490d      	ldr	r1, [pc, #52]	; (80015c4 <LoopForever+0xa>)
+ 800164a:	490d      	ldr	r1, [pc, #52]	; (8001680 <LoopForever+0xa>)
   ldr r2, =_sidata
- 8001590:	4a0d      	ldr	r2, [pc, #52]	; (80015c8 <LoopForever+0xe>)
+ 800164c:	4a0d      	ldr	r2, [pc, #52]	; (8001684 <LoopForever+0xe>)
   movs r3, #0
- 8001592:	2300      	movs	r3, #0
+ 800164e:	2300      	movs	r3, #0
   b LoopCopyDataInit
- 8001594:	e002      	b.n	800159c <LoopCopyDataInit>
+ 8001650:	e002      	b.n	8001658 <LoopCopyDataInit>
 
-08001596 <CopyDataInit>:
+08001652 <CopyDataInit>:
 
 CopyDataInit:
   ldr r4, [r2, r3]
- 8001596:	58d4      	ldr	r4, [r2, r3]
+ 8001652:	58d4      	ldr	r4, [r2, r3]
   str r4, [r0, r3]
- 8001598:	50c4      	str	r4, [r0, r3]
+ 8001654:	50c4      	str	r4, [r0, r3]
   adds r3, r3, #4
- 800159a:	3304      	adds	r3, #4
+ 8001656:	3304      	adds	r3, #4
 
-0800159c <LoopCopyDataInit>:
+08001658 <LoopCopyDataInit>:
 
 LoopCopyDataInit:
   adds r4, r0, r3
- 800159c:	18c4      	adds	r4, r0, r3
+ 8001658:	18c4      	adds	r4, r0, r3
   cmp r4, r1
- 800159e:	428c      	cmp	r4, r1
+ 800165a:	428c      	cmp	r4, r1
   bcc CopyDataInit
- 80015a0:	d3f9      	bcc.n	8001596 <CopyDataInit>
+ 800165c:	d3f9      	bcc.n	8001652 <CopyDataInit>
 
 /* Zero fill the bss segment. */
   ldr r2, =_sbss
- 80015a2:	4a0a      	ldr	r2, [pc, #40]	; (80015cc <LoopForever+0x12>)
+ 800165e:	4a0a      	ldr	r2, [pc, #40]	; (8001688 <LoopForever+0x12>)
   ldr r4, =_ebss
- 80015a4:	4c0a      	ldr	r4, [pc, #40]	; (80015d0 <LoopForever+0x16>)
+ 8001660:	4c0a      	ldr	r4, [pc, #40]	; (800168c <LoopForever+0x16>)
   movs r3, #0
- 80015a6:	2300      	movs	r3, #0
+ 8001662:	2300      	movs	r3, #0
   b LoopFillZerobss
- 80015a8:	e001      	b.n	80015ae <LoopFillZerobss>
+ 8001664:	e001      	b.n	800166a <LoopFillZerobss>
 
-080015aa <FillZerobss>:
+08001666 <FillZerobss>:
 
 FillZerobss:
   str  r3, [r2]
- 80015aa:	6013      	str	r3, [r2, #0]
+ 8001666:	6013      	str	r3, [r2, #0]
   adds r2, r2, #4
- 80015ac:	3204      	adds	r2, #4
+ 8001668:	3204      	adds	r2, #4
 
-080015ae <LoopFillZerobss>:
+0800166a <LoopFillZerobss>:
 
 LoopFillZerobss:
   cmp r2, r4
- 80015ae:	42a2      	cmp	r2, r4
+ 800166a:	42a2      	cmp	r2, r4
   bcc FillZerobss
- 80015b0:	d3fb      	bcc.n	80015aa <FillZerobss>
+ 800166c:	d3fb      	bcc.n	8001666 <FillZerobss>
 
 /* Call static constructors */
   bl __libc_init_array
- 80015b2:	f000 f811 	bl	80015d8 <__libc_init_array>
+ 800166e:	f000 f811 	bl	8001694 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 80015b6:	f7ff ff91 	bl	80014dc <main>
+ 8001672:	f7ff ff95 	bl	80015a0 <main>
 
-080015ba <LoopForever>:
+08001676 <LoopForever>:
 
 LoopForever:
   b LoopForever
- 80015ba:	e7fe      	b.n	80015ba <LoopForever>
+ 8001676:	e7fe      	b.n	8001676 <LoopForever>
   ldr   r0, =_estack
- 80015bc:	20005000 	.word	0x20005000
+ 8001678:	20005000 	.word	0x20005000
   ldr r0, =_sdata
- 80015c0:	20000000 	.word	0x20000000
+ 800167c:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 80015c4:	20000010 	.word	0x20000010
+ 8001680:	20000010 	.word	0x20000010
   ldr r2, =_sidata
- 80015c8:	08001654 	.word	0x08001654
+ 8001684:	08001710 	.word	0x08001710
   ldr r2, =_sbss
- 80015cc:	20000010 	.word	0x20000010
+ 8001688:	20000010 	.word	0x20000010
   ldr r4, =_ebss
- 80015d0:	20000034 	.word	0x20000034
+ 800168c:	2000003c 	.word	0x2000003c
 
-080015d4 <ADC1_2_IRQHandler>:
+08001690 <ADC1_2_IRQHandler>:
  * @retval : None
 */
   .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 Infinite_Loop:
   b Infinite_Loop
- 80015d4:	e7fe      	b.n	80015d4 <ADC1_2_IRQHandler>
+ 8001690:	e7fe      	b.n	8001690 <ADC1_2_IRQHandler>
 	...
 
-080015d8 <__libc_init_array>:
- 80015d8:	b570      	push	{r4, r5, r6, lr}
- 80015da:	2600      	movs	r6, #0
- 80015dc:	4d0c      	ldr	r5, [pc, #48]	; (8001610 <__libc_init_array+0x38>)
- 80015de:	4c0d      	ldr	r4, [pc, #52]	; (8001614 <__libc_init_array+0x3c>)
- 80015e0:	1b64      	subs	r4, r4, r5
- 80015e2:	10a4      	asrs	r4, r4, #2
- 80015e4:	42a6      	cmp	r6, r4
- 80015e6:	d109      	bne.n	80015fc <__libc_init_array+0x24>
- 80015e8:	f000 f81a 	bl	8001620 <_init>
- 80015ec:	2600      	movs	r6, #0
- 80015ee:	4d0a      	ldr	r5, [pc, #40]	; (8001618 <__libc_init_array+0x40>)
- 80015f0:	4c0a      	ldr	r4, [pc, #40]	; (800161c <__libc_init_array+0x44>)
- 80015f2:	1b64      	subs	r4, r4, r5
- 80015f4:	10a4      	asrs	r4, r4, #2
- 80015f6:	42a6      	cmp	r6, r4
- 80015f8:	d105      	bne.n	8001606 <__libc_init_array+0x2e>
- 80015fa:	bd70      	pop	{r4, r5, r6, pc}
- 80015fc:	f855 3b04 	ldr.w	r3, [r5], #4
- 8001600:	4798      	blx	r3
- 8001602:	3601      	adds	r6, #1
- 8001604:	e7ee      	b.n	80015e4 <__libc_init_array+0xc>
- 8001606:	f855 3b04 	ldr.w	r3, [r5], #4
- 800160a:	4798      	blx	r3
- 800160c:	3601      	adds	r6, #1
- 800160e:	e7f2      	b.n	80015f6 <__libc_init_array+0x1e>
- 8001610:	0800164c 	.word	0x0800164c
- 8001614:	0800164c 	.word	0x0800164c
- 8001618:	0800164c 	.word	0x0800164c
- 800161c:	08001650 	.word	0x08001650
+08001694 <__libc_init_array>:
+ 8001694:	b570      	push	{r4, r5, r6, lr}
+ 8001696:	2600      	movs	r6, #0
+ 8001698:	4d0c      	ldr	r5, [pc, #48]	; (80016cc <__libc_init_array+0x38>)
+ 800169a:	4c0d      	ldr	r4, [pc, #52]	; (80016d0 <__libc_init_array+0x3c>)
+ 800169c:	1b64      	subs	r4, r4, r5
+ 800169e:	10a4      	asrs	r4, r4, #2
+ 80016a0:	42a6      	cmp	r6, r4
+ 80016a2:	d109      	bne.n	80016b8 <__libc_init_array+0x24>
+ 80016a4:	f000 f81a 	bl	80016dc <_init>
+ 80016a8:	2600      	movs	r6, #0
+ 80016aa:	4d0a      	ldr	r5, [pc, #40]	; (80016d4 <__libc_init_array+0x40>)
+ 80016ac:	4c0a      	ldr	r4, [pc, #40]	; (80016d8 <__libc_init_array+0x44>)
+ 80016ae:	1b64      	subs	r4, r4, r5
+ 80016b0:	10a4      	asrs	r4, r4, #2
+ 80016b2:	42a6      	cmp	r6, r4
+ 80016b4:	d105      	bne.n	80016c2 <__libc_init_array+0x2e>
+ 80016b6:	bd70      	pop	{r4, r5, r6, pc}
+ 80016b8:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80016bc:	4798      	blx	r3
+ 80016be:	3601      	adds	r6, #1
+ 80016c0:	e7ee      	b.n	80016a0 <__libc_init_array+0xc>
+ 80016c2:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80016c6:	4798      	blx	r3
+ 80016c8:	3601      	adds	r6, #1
+ 80016ca:	e7f2      	b.n	80016b2 <__libc_init_array+0x1e>
+ 80016cc:	08001708 	.word	0x08001708
+ 80016d0:	08001708 	.word	0x08001708
+ 80016d4:	08001708 	.word	0x08001708
+ 80016d8:	0800170c 	.word	0x0800170c
 
-08001620 <_init>:
- 8001620:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8001622:	bf00      	nop
- 8001624:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8001626:	bc08      	pop	{r3}
- 8001628:	469e      	mov	lr, r3
- 800162a:	4770      	bx	lr
+080016dc <_init>:
+ 80016dc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80016de:	bf00      	nop
+ 80016e0:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80016e2:	bc08      	pop	{r3}
+ 80016e4:	469e      	mov	lr, r3
+ 80016e6:	4770      	bx	lr
 
-0800162c <_fini>:
- 800162c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800162e:	bf00      	nop
- 8001630:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8001632:	bc08      	pop	{r3}
- 8001634:	469e      	mov	lr, r3
- 8001636:	4770      	bx	lr
+080016e8 <_fini>:
+ 80016e8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80016ea:	bf00      	nop
+ 80016ec:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80016ee:	bc08      	pop	{r3}
+ 80016f0:	469e      	mov	lr, r3
+ 80016f2:	4770      	bx	lr

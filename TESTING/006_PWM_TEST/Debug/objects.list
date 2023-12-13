@@ -2,6 +2,7 @@
 "./Src/GPIO_program.o"
 "./Src/GPT_program.o"
 "./Src/RCC_program.o"
+"./Src/SYSTICK_program.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

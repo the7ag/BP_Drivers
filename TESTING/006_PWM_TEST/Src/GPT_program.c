@@ -395,7 +395,8 @@ Std_ReturnType GPT_TIMx_PWM_SetChannel(u8 Copy_GPT_TIMx,GPT_PWM_Channel_t Copy_C
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 | (Copy_PWM_Mode<<4);
         SET_BIT( TIM[Copy_GPT_TIMx]->CCMR1 , TIMX_CCMR1_OC1PE);
         SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1E );
-        CLR_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1P );
+        SET_BIT( TIM[Copy_GPT_TIMx]->CCER , TIMX_CCER_CC1P );
+        SET_BIT(TIM[Copy_GPT_TIMx]->BDTR ,15);
         break;
     case TIM_Channel2:
         TIM[Copy_GPT_TIMx]->CCMR1 = TIM[Copy_GPT_TIMx]->CCMR1 & ~(0b1111<<12);

@@ -20,6 +20,7 @@
 #include "RCC_interface.h"
 #include "GPIO_interface.h"
 #include "GPT_interface.h"
+#include "SYSTICK_interface.h"
 
 int main(void)
 {
@@ -43,7 +44,7 @@ int main(void)
 			.PWM_Mode=PWM_11
 	};
 	GPT_PWM_INIT(TIM1,&TIM1_PWM_CONFIG);
-	GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, 50);
+	MCAL_SYSTICK_vINIT();
     /* Loop forever */
 	for(;;)
 	{
@@ -55,5 +56,6 @@ int main(void)
 		{
 			GPT_PWM_SetDutyCycle(TIM1, TIM_Channel1, i);
 		}
+		MCAL_SYSTICK_DelayMS(500);
 	}
 }

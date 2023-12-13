@@ -68,6 +68,8 @@
 #define TIMX_CCER_CC3P  9
 #define TIMX_CCER_CC4E  12
 #define TIMX_CCER_CC4P  13
+/*******************************< BTDR *******************************/
+#define TIMX_BDTR_MOE 15
 /**
  * @brief GPT Register Map.
  *
