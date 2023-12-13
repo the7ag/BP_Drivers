@@ -29,6 +29,9 @@ This repository contains driver libraries for various peripherals of the STM32F1
 ### 8. General Purpose Timers
 - This driver provides functions to configure and control general-purpose timers (TIM1, TIM2, etc.).
 
+### 9. Ultrasonic Driver
+- The Ultrasonic driver offers functionality to interface and control ultrasonic sensors for distance measurement.
+
 ## Testing
 
 ### RCC Testing
@@ -52,12 +55,15 @@ This repository contains driver libraries for various peripherals of the STM32F1
 ### SYSTICK Testing
 - To test the SYSTICK driver, create delays and measure time intervals using the SysTick timer. `004_SYSTICK_TEST` demonstrates SysTick usage.
 
-### General Purpose Timers Testing
-- Test general-purpose timers by configuring them in various modes (PWM, Capture, etc.) and observing their behavior. Use `005_GPT_TEST` for testing timer functionalities.
+### General Purpose Timers (GPT) Testing including PWM
+- Test the GPT driver by configuring general-purpose timers in various modes like PWM (Pulse Width Modulation) and observing their behavior. Use `005_GPT_TEST` to test timer functionalities, including PWM functions in `006_PWM_TEST`.
+
+### Ultrasonic Driver Testing
+- Utilize the Ultrasonic driver to interface with ultrasonic sensors for distance measurement. Example codes and usage guidelines can be found in the respective folder.
 
 ## Usage
 1. Clone the repository:
-   ```
+ ```
    git clone https://github.com/MuteMotion/BP_Drivers.git
    ```
 2. Include the required driver files in your STM32 project.
@@ -65,5 +71,3 @@ This repository contains driver libraries for various peripherals of the STM32F1
 
 ## Contributions
 Contributions are welcome! If you'd like to improve these drivers or add support for additional peripherals, feel free to submit a pull request.
-
----
