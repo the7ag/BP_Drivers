@@ -13,12 +13,12 @@
  * @version V01
  * @author Mohamed Ali Bayoumi
  */
-#ifndef US_config_H_
-#define US_config_H_
+#ifndef US_CONFIG_H_
+#define US_CONFIG_H_
 
 // This constant defines the number of ultrasonic sensor being used.
 #define NUMBER_OF_ULTRASONIC_USED       3
 // This constant defines the timer period for the ultrasonic sensor
 #define TIMER_PERIOD                    (10000)
 
-#endif /* US_config_H_ */
+#endif /* US_CONFIG_H_ */

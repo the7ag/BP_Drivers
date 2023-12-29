@@ -13,8 +13,8 @@
  * @version V01
  * @author Mohamed Ali Bayoumi
  */
-#ifndef US_interface_H_
-#define US_interface_H_
+#ifndef US_INTERFACE_H_
+#define US_INTERFACE_H_
 /*
  * Enum for the ID of the ultrasonic sensors.
  * The three sensors are named Right, Left, and Middle.
@@ -105,4 +105,4 @@ Std_ReturnType Ultrasonic_setRange(Ultrasonic_ID_t ID, uint16 Range_cm);
 Std_ReturnTypeid Ultrasonic_setState(Ultrasonic_ID_t ID, Ultrasonic_state_t state);
 
 
-#endif /* US_interface_H_ */
+#endif /* US_INTERFACE_H_ */
