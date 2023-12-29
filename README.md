@@ -31,6 +31,8 @@ This repository contains driver libraries for various peripherals of the STM32F1
 
 ### 9. Ultrasonic Driver
 - The Ultrasonic driver offers functionality to interface and control ultrasonic sensors for distance measurement.
+### 10. LCD Driver
+- The LCD driver facilitates interfacing and controlling an LCD (Liquid Crystal Display) module with the STM32F103C8 microcontroller. It provides functions for initializing the display, writing data or commands, and managing the display output.
 
 ## Testing
 
@@ -60,6 +62,8 @@ This repository contains driver libraries for various peripherals of the STM32F1
 
 ### Ultrasonic Driver Testing
 - Utilize the Ultrasonic driver to interface with ultrasonic sensors for distance measurement. Example codes and usage guidelines can be found in the respective folder.
+#### LCD Testing
+- To test the LCD driver, an example code demonstrating the initialization and basic operations of the LCD module can be found in `006_LCD_TEST.c`. This includes initializing the LCD, writing text or custom characters, and performing basic display operations.
 
 ## Usage
 1. Clone the repository:
