@@ -1,0 +1,8 @@
+../Src/LCD_program.c:34:16:LCD_Init	16	static
+../Src/LCD_program.c:115:16:LCD_SendCmnd	24	static
+../Src/LCD_program.c:188:16:LCD_SendChar	24	static
+../Src/LCD_program.c:261:16:LCD_SendString	24	static
+../Src/LCD_program.c:283:16:LCD_SendIntger	64	static
+../Src/LCD_program.c:307:16:LCD_SendFloat	32	static
+../Src/LCD_program.c:342:16:LCD_Gotoyx	24	static
+../Src/LCD_program.c:373:16:LCD_WriteSpecialCharacter	24	static

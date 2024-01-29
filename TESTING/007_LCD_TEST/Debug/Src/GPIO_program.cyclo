@@ -1,0 +1,6 @@
+GPIO_program.c:26:16:MCAL_GPIO_SetPinMode	11
+GPIO_program.c:94:16:MCAL_GPIO_SetPinValue	11
+GPIO_program.c:156:16:MCAL_GPIO_GetPinValue	6
+GPIO_program.c:188:16:MCAL_GPIO_AtomicSetPin	5
+GPIO_program.c:214:16:MCAL_GPIO_AtomicResetPin	5
+GPIO_program.c:241:16:MCAL_GPIO_LCKPin	14

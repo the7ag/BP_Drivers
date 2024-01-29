@@ -1,0 +1,8 @@
+LCD_program.c:34:16:LCD_Init	1
+LCD_program.c:115:16:LCD_SendCmnd	1
+LCD_program.c:188:16:LCD_SendChar	1
+LCD_program.c:261:16:LCD_SendString	2
+LCD_program.c:283:16:LCD_SendIntger	1
+LCD_program.c:307:16:LCD_SendFloat	1
+LCD_program.c:342:16:LCD_Gotoyx	3
+LCD_program.c:373:16:LCD_WriteSpecialCharacter	2

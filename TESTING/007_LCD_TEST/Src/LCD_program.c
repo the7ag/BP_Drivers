@@ -263,10 +263,11 @@ Std_ReturnType LCD_SendString (u8* Copy_String)
     // Variable to track the function status, initially set to E_NOT_OK
     Std_ReturnType Local_FunctionStatus = E_NOT_OK;
     // Loop through each character in the string until the null terminator is encountered
-    for ( u8 Local_i = 0; Copy_String[Local_i] != '\0'; Local_i++) {
+    for (u8 Local_i = 0; Copy_String[Local_i] != '\0'; Local_i++) {
         // Send each character of the string to be displayed on the LCD
         LCD_SendChar(Copy_String[Local_i]);
     }
+
     // All characters sent successfully, update function status to indicate success
     Local_FunctionStatus = E_OK;
 
@@ -348,12 +349,11 @@ Std_ReturnType LCD_Gotoyx(u8 Copy_Y,u8 Copy_X)
     // Check if the provided row (Y) and column (X) values are within valid range
     if (Copy_Y < 2 && Copy_X < 16) {
         // Calculate the corresponding address based on row and column
-        Local_Address = (Copy_Y * 0x40) + Copy_X;
-          Local_Address = SET_BIT(Local_Address, 7); // Set bit 7 for addressing the DDRAM
+    	Local_Address = (Copy_Y * 0x40) + Copy_X;
 
+    	Local_Address = SET_BIT(Local_Address, 7); // Set bit 7 for addressing the DDRAM
         // Send command to the LCD to set the cursor to the calculated position
         LCD_SendCmnd(Local_Address);
-
         // Update function status to indicate successful cursor positioning
         Local_FunctionStatus = E_OK;
     }
