@@ -1,0 +1,12 @@
+../Src/RCC_program.c:16:16:MCAL_RCC_InitSysClock	16	static
+../Src/RCC_program.c:104:16:MCAL_Rcc_EnablePrephiral	24	static
+../Src/RCC_program.c:130:16:MCAL_Rcc_DisablePrephiral	24	static
+../Src/RCC_program.c:156:16:MCAL_RCC_EnableClkSecuritySystem	16	static
+../Src/RCC_program.c:168:16:MCAL_RCC_DisapleClkSecuritySystem	16	static
+../Src/RCC_program.c:178:16:MCAL_RCC_SetAHB_Pre	24	static
+../Src/RCC_program.c:188:16:MCAL_RCC_SetAPB1_Pre	24	static
+../Src/RCC_program.c:198:16:MCAL_RCC_SetAPB2_Pre	24	static
+../Src/RCC_program.c:208:16:MCAL_RCC_SetADC_Pre	24	static
+../Src/RCC_program.c:218:16:MCAL_RCC_SetPLL_MUL	24	static
+../Src/RCC_program.c:228:16:MCAL_RCC_SetUSB_Pre	24	static
+../Src/RCC_program.c:238:16:MCAL_RCC_EnaleMCO	16	static
