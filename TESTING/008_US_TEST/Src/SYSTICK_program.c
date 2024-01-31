@@ -280,7 +280,7 @@ Std_ReturnType MCAL_SYSTICK_SetIntervalSingle(f32 Copy_MicroSeconds , SYSTICK_Ca
         /**< Save the callback function pointer */
         SYSTICK_Callback = Callback_Func;
         /* Calculate the number of ticks required to wait for the specified number of microseconds */
-        u32 Local_TickRequired = (u32)(Copy_MicroSeconds * (STK_AHB_CLK / 1000000.0));
+        u32 Local_TickRequired = (u32)(Copy_MicroSeconds * (STK_AHB_CLK / 1000000));
         /* Set the reload value for the SysTick timer */
         SYSTICK->LOAD = Local_TickRequired;
         /**< Set the Mode of interval to be single */

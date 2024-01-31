@@ -1,0 +1,13 @@
+SYSTICK_program.c:29:16:MCAL_SYSTICK_xINIT	1
+SYSTICK_program.c:55:16:MCAL_SYSTICK_vINIT	1
+SYSTICK_program.c:80:16:MCAL_SYSTICK_SetReloadValue	2
+SYSTICK_program.c:97:16:MCAL_SYSTICK_Start	1
+SYSTICK_program.c:106:16:MCAL_SYSTICK_Stop	1
+SYSTICK_program.c:115:16:MCAL_SYSTICK_Reset	1
+SYSTICK_program.c:130:16:MCAL_SYSTICK_GetRemainingCounts	1
+SYSTICK_program.c:139:16:MCAL_SYSTICK_GetElapsedCounts	1
+SYSTICK_program.c:163:16:MCAL_SYSTICK_DelayUS	7
+SYSTICK_program.c:219:16:MCAL_SYSTICK_DelayMS	7
+SYSTICK_program.c:275:16:MCAL_SYSTICK_SetIntervalSingle	2
+SYSTICK_program.c:301:16:MCAL_SYSTICK_SetIntervalPeriodic	2
+SYSTICK_program.c:334:6:SysTick_Handler	3

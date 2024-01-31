@@ -103,7 +103,7 @@ Std_ReturnType Ultrasonic_setRange(US_ID_t ID, u16 Range_cm);
  *   - E_NOT_OK : Error occurred while setting state or invalid parameters.
  */
 Std_ReturnType Ultrasonic_setState(US_ID_t ID, Ultrasonic_state_t state);
-void callback_fun();
 
+void callback_fun();
 
 #endif /* US_INTERFACE_H_ */
