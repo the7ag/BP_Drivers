@@ -1,0 +1,9 @@
+../Src/SCB_program.c:15:16:MCAL_SCB_SetPriorityGrouping	24	static
+../Src/SCB_program.c:24:6:EnableGlobalInterrupts	4	static,ignoring_inline_asm
+../Src/SCB_program.c:30:6:DisableGlobalInterrupts	4	static,ignoring_inline_asm
+../Src/SCB_program.c:36:16:MCAL_SCB_EnableMemFault	16	static
+../Src/SCB_program.c:45:16:MCAL_SCB_EnableBusFault	16	static
+../Src/SCB_program.c:54:16:MCAL_SCB_EnableUsageFault	16	static
+../Src/SCB_program.c:63:16:MCAL_SCB_ClearBusFault	16	static
+../Src/SCB_program.c:72:16:MCAL_SCB_ClearMemFault	16	static
+../Src/SCB_program.c:81:16:MCAL_SCB_ClearUsageFault	16	static

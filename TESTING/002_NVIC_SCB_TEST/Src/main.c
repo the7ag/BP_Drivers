@@ -18,7 +18,5 @@ int main(void)
 	 /* Loop forever */
 	MCAL_NVIC_EnableIRQ(NVIC_SPI1_IRQn);
 	MCAL_NVIC_DisableIRQ(NVIC_SPI1_IRQn);
-
-
 	}
 }
