@@ -139,23 +139,22 @@ Std_ReturnType MCAL_SYSTICK_GetRemainingCounts(u32* Remaining_Counts)
 Std_ReturnType MCAL_SYSTICK_GetElapsedCounts(u32* Elapsed_Counts)
 {
     Std_ReturnType Local_FunctionStatus= E_NOT_OK;
-    // static u32 Local_PreviousValue =0; /**< Store the previous SysTick timer value */
-    // u32 Local_CurrentValue=SYSTICK->VAL; /**< Get the current SysTick timer value */
-    // /**< Check if the timer has wrapped around (current value is less than the previous value) */
-    // if(Local_CurrentValue < Local_PreviousValue)
-    // {
-    //     /**< Calculate elapsed ticks considering timer overflow */
-    //     *Elapsed_Counts = Local_PreviousValue - Local_CurrentValue;
-    // }
-    // else
-    // {
-    //     /**< Calculate elapsed ticks without timer overflow */
-    //     *Elapsed_Counts = SYSTICK->LOAD - (Local_CurrentValue - Local_PreviousValue);
-    //}
+//     static u32 Local_PreviousValue =0; /**< Store the previous SysTick timer value */
+//     u32 Local_CurrentValue=SYSTICK->VAL; /**< Get the current SysTick timer value */
+//     /**< Check if the timer has wrapped around (current value is less than the previous value) */
+//     if(Local_CurrentValue < Local_PreviousValue)
+//     {
+//         /**< Calculate elapsed ticks considering timer overflow */
+//         *Elapsed_Counts = Local_PreviousValue - Local_CurrentValue;
+//     }
+//     else
+//     {
+//         /**< Calculate elapsed ticks without timer overflow */
+//         *Elapsed_Counts = (u32)SYSTICK->LOAD - (Local_CurrentValue - Local_PreviousValue);
+//    }
     *Elapsed_Counts=(SYSTICK->LOAD - SYSTICK->VAL);
-    *Elapsed_Counts /= (STK_AHB_CLK / 1000000);
     /**< Update the previous value for the next call */
-    //Local_PreviousValue=Local_CurrentValue;
+   // Local_PreviousValue=Local_CurrentValue;
     Local_FunctionStatus=E_OK;
     return Local_FunctionStatus;
 }
@@ -165,47 +164,53 @@ Std_ReturnType MCAL_SYSTICK_DelayUS(f32 Copy_MicroSeconds)
     Std_ReturnType Local_FunctionStatus= E_NOT_OK;
     /**< Calculate the number of ticks required for the given microseconds */ 
     u32 Local_TickRequired = (u32)(Copy_MicroSeconds * (STK_AHB_CLK / 1000000.0));
+    if (SYSTICK_AHB_CLKSRC == SYSTICK_CLKSRC_DIV_8)
+    {
+ 	    Local_TickRequired/=8;
+    }
     /**< Check if the ticks required is within the valid range */ 
     if (Local_TickRequired <= SYSTICK_RELOAD_MAX)
-    {
+   {
         /**< Set the reload value of the SysTick timer */ 
         SYSTICK->LOAD = Local_TickRequired;
         /**< Enable the SysTick timer */ 
-        SYSTICK->CTRL |= SYSTICK_CTRL_ENABLE_MASK;
+        CLR_BIT(SYSTICK->CTRL,1);
+        MCAL_SYSTICK_Start();
         /**< Wait until the COUNTFLAG bit is set (indicates timer has counted down to zero) */ 
-        while(!(SYSTICK->CTRL & SYSTICK_CTRL_COUNTFLAG_MASK));
+        while(GET_BIT(SYSTICK->CTRL,16)==0);
         /**< Disable the SysTick timer */ 
-        SYSTICK->CTRL &= ~SYSTICK_CTRL_ENABLE_MASK;
+        CLR_BIT(SYSTICK->CTRL,0);
         /**< Reset the timer value */ 
         MCAL_SYSTICK_Reset();
         Local_FunctionStatus= E_OK;
     }else if(Local_TickRequired > SYSTICK_RELOAD_MAX)
     {
-        /**< Calculate the number of Overflows */ 
+
+        /**< Calculate the number of Overflows */
         u32 Local_OverFlowCount = Local_TickRequired / SYSTICK_RELOAD_MAX;
-        /**< Check the first timer value to get the exact delay */  
+        /**< Check the first timer value to get the exact delay */
         u32 Local_InitialValue = Local_TickRequired % SYSTICK_RELOAD_MAX;
-        /**< Set the reload value of the SysTick timer */ 
+        /**< Set the reload value of the SysTick timer */
         SYSTICK->LOAD = Local_InitialValue;
-        /**< Enable the SysTick timer */ 
+        /**< Enable the SysTick timer */
         SYSTICK->CTRL |= SYSTICK_CTRL_ENABLE_MASK;
-        /**< Wait until the COUNTFLAG bit is set (indicates timer has counted down to zero) */ 
+        /**< Wait until the COUNTFLAG bit is set (indicates timer has counted down to zero) */
         while(!(SYSTICK->CTRL & SYSTICK_CTRL_COUNTFLAG_MASK));
-        /**< Disable the SysTick timer */ 
+        /**< Disable the SysTick timer */
         SYSTICK->CTRL &= ~SYSTICK_CTRL_ENABLE_MASK;
-        /**< Set the reload value of the SysTick timer for the rest of the  */ 
+        /**< Set the reload value of the SysTick timer for the rest of the  */
         SYSTICK->LOAD = SYSTICK_RELOAD_MAX-1;
-        /**< Enable the SysTick timer */ 
+        /**< Enable the SysTick timer */
         SYSTICK->CTRL |= SYSTICK_CTRL_ENABLE_MASK;
-        /**< Loop untill there's no more OVF */ 
+        /**< Loop untill there's no more OVF */
         for(u32 Local_Counter=0 ; Local_Counter<=Local_OverFlowCount ; Local_Counter++)
         {
-            /**< Wait until the COUNTFLAG bit is set (indicates timer has counted down to zero) */ 
+            /**< Wait until the COUNTFLAG bit is set (indicates timer has counted down to zero) */
             while(!(SYSTICK->CTRL & SYSTICK_CTRL_COUNTFLAG_MASK));
         }
-        /**< Disable the SysTick timer */ 
+        /**< Disable the SysTick timer */
         SYSTICK->CTRL &= ~SYSTICK_CTRL_ENABLE_MASK;
-        /**< Reset the SysTick timer */ 
+        /**< Reset the SysTick timer */
         MCAL_SYSTICK_Reset();
         Local_FunctionStatus= E_OK;
     }
@@ -221,6 +226,10 @@ Std_ReturnType MCAL_SYSTICK_DelayMS(f32 Copy_MilliSeconds)
     Std_ReturnType Local_FunctionStatus= E_NOT_OK;
     /**< Calculate the number of ticks required for the given microseconds */ 
     u32 Local_TickRequired = (u32)(Copy_MilliSeconds * (STK_AHB_CLK / 1000.0));
+    if (SYSTICK_AHB_CLKSRC == SYSTICK_CLKSRC_DIV_8)
+    {
+ 	    Local_TickRequired/=8;
+    }
     /**< Check if the ticks required is within the valid range */ 
     if (Local_TickRequired <= SYSTICK_RELOAD_MAX)
     {
@@ -280,14 +289,18 @@ Std_ReturnType MCAL_SYSTICK_SetIntervalSingle(f32 Copy_MicroSeconds , SYSTICK_Ca
         /**< Save the callback function pointer */
         SYSTICK_Callback = Callback_Func;
         /* Calculate the number of ticks required to wait for the specified number of microseconds */
-        u32 Local_TickRequired = (u32)(Copy_MicroSeconds * (STK_AHB_CLK / 1000000.0));
+        u32 Local_TickRequired = (u32)(Copy_MicroSeconds * (STK_AHB_CLK / 1000000));
+        if (SYSTICK_AHB_CLKSRC == SYSTICK_CLKSRC_DIV_8)
+        {
+     	    Local_TickRequired/=8;
+        }
+       // Local_TickRequired/=8;
         /* Set the reload value for the SysTick timer */
         SYSTICK->LOAD = Local_TickRequired;
         /**< Set the Mode of interval to be single */
         SYSTICK_ModeOfInterval=SYSTICK_SINGLE_INTERVAL;
         /* Start the SysTick timer and enable the interrupt */
-        SYSTICK->CTRL |= SYSTICK_CTRL_TICKINT_MASK;
-        SYSTICK->CTRL |= SYSTICK_CTRL_ENABLE_MASK;
+        MCAL_SYSTICK_Start();
         /**< Configured successfully */
         Local_FunctionStatus= E_OK;
     }else

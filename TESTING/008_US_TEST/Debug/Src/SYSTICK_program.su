@@ -6,8 +6,8 @@
 ../Src/SYSTICK_program.c:115:16:MCAL_SYSTICK_Reset	16	static
 ../Src/SYSTICK_program.c:130:16:MCAL_SYSTICK_GetRemainingCounts	24	static
 ../Src/SYSTICK_program.c:139:16:MCAL_SYSTICK_GetElapsedCounts	24	static
-../Src/SYSTICK_program.c:163:16:MCAL_SYSTICK_DelayUS	40	static
-../Src/SYSTICK_program.c:219:16:MCAL_SYSTICK_DelayMS	40	static
-../Src/SYSTICK_program.c:275:16:MCAL_SYSTICK_SetIntervalSingle	24	static
-../Src/SYSTICK_program.c:301:16:MCAL_SYSTICK_SetIntervalPeriodic	24	static
-../Src/SYSTICK_program.c:334:6:SysTick_Handler	8	static
+../Src/SYSTICK_program.c:162:16:MCAL_SYSTICK_DelayUS	40	static
+../Src/SYSTICK_program.c:224:16:MCAL_SYSTICK_DelayMS	40	static
+../Src/SYSTICK_program.c:284:16:MCAL_SYSTICK_SetIntervalSingle	24	static
+../Src/SYSTICK_program.c:314:16:MCAL_SYSTICK_SetIntervalPeriodic	24	static
+../Src/SYSTICK_program.c:347:6:SysTick_Handler	8	static

@@ -30,7 +30,7 @@
 #include "US_config.h"
 /**************************************** Global Var *****************************************************/
 static volatile US_t Ultrasonic[NUMBER_OF_ULTRASONIC_USED];
-static volatile f32 distance;
+u32 distance;
 static volatile u8 echoRisingFlag,readingState;
 /*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType Ultrasonic_init(US_ID_t ID, US_config_t * Ultrasonic_config)
@@ -65,7 +65,6 @@ Std_ReturnType Ultrasonic_init(US_ID_t ID, US_config_t * Ultrasonic_config)
     MCAL_Rcc_EnablePrephiral(RCC_APB2_AFIOEN,RCC_APB2);
     MCAL_GPIO_SetPinMode(Ultrasonic[ID].Echo_port ,Ultrasonic[ID].Echo_pin ,GPIO_INPUT_FLOATING_MODE);
     MCAL_GPIO_SetPinMode(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_OUTPUT_LOW_SPEED_PUSHPULL);
-
     MCAL_AFIO_SetEXTIConfigration((EXTI_LINE0 + Ultrasonic[ID].Echo_pin),Ultrasonic[ID].Echo_port);
     u8 EXTI_IRQ_NUM=EXTI_LINE0 + Ultrasonic[ID].Echo_pin;
     if(EXTI_IRQ_NUM ==0)
@@ -96,7 +95,9 @@ Std_ReturnType Ultrasonic_init(US_ID_t ID, US_config_t * Ultrasonic_config)
     MCAL_EXTI_SetTrigger(Ultrasonic[ID].Echo_pin,EXTI_BOTH_EDGE);
     MCAL_SYSTICK_vINIT();
     Local_FunctionStatus=E_OK;
+
     return Local_FunctionStatus;
+
 }
 /*====================================================   END_FUNCTION   ====================================================*/
 /*====================================================   Start_FUNCTION   ====================================================*/
@@ -110,11 +111,10 @@ Std_ReturnType Ultrasonic_readDistance(US_ID_t ID,f32* copy_US_reading)
         MCAL_EXTI_EnableLine(Ultrasonic[ID].Echo_pin);
         MCAL_EXTI_SetTrigger(Ultrasonic[ID].Echo_pin,EXTI_BOTH_EDGE);
         MCAL_GPIO_SetPinValue(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_LOW);
-        MCAL_SYSTICK_DelayMS(2);
+        MCAL_SYSTICK_DelayUS(2);
         MCAL_GPIO_SetPinValue(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_HIGH);
-        MCAL_SYSTICK_DelayMS(10);
+        MCAL_SYSTICK_DelayUS(10);
         MCAL_GPIO_SetPinValue(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_LOW);
-
         while(readingState == READING_PENDING)
         {
             u32 local_Counts;
@@ -127,7 +127,8 @@ Std_ReturnType Ultrasonic_readDistance(US_ID_t ID,f32* copy_US_reading)
                 *copy_US_reading=OUT_OF_RANGE;
                 break;
             }
-        }*copy_US_reading=distance;
+        }
+        *copy_US_reading=distance;
          return Local_FunctionStatus;
     }
     else
@@ -159,18 +160,19 @@ void CalcDistance()
 {
     if(echoRisingFlag == RISING_DETECTED)
     {
-        MCAL_SYSTICK_SetIntervalSingle(TIMER_PERIOD,callback_fun);
+        MCAL_SYSTICK_SetIntervalSingle(TIMER_PERIOD, callback_fun);
         echoRisingFlag=FALLING_DETECTED;
-    }else if(echoRisingFlag==FALLING_DETECTED)
+
+    }else
     {
         if (readingState != READING_DONE)
         {
             readingState=READING_DONE;
             MCAL_SYSTICK_GetElapsedCounts(&distance);
-            distance*=0.017; 
-            MCAL_SYSTICK_Stop();
+            distance*=0.017;
+            MCAL_SYSTICK_Reset();
         }
-        
+
     }
 }
 void callback_fun(){

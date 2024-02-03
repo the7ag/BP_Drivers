@@ -30,7 +30,7 @@
 #include "US_config.h"
 /**************************************** Global Var *****************************************************/
 static volatile US_t Ultrasonic[NUMBER_OF_ULTRASONIC_USED];
-static volatile f32 distance;
+u32 distance;
 static volatile u8 echoRisingFlag,readingState;
 /*====================================================   Start_FUNCTION   ====================================================*/
 Std_ReturnType Ultrasonic_init(US_ID_t ID, US_config_t * Ultrasonic_config)
@@ -95,7 +95,9 @@ Std_ReturnType Ultrasonic_init(US_ID_t ID, US_config_t * Ultrasonic_config)
     MCAL_EXTI_SetTrigger(Ultrasonic[ID].Echo_pin,EXTI_BOTH_EDGE);
     MCAL_SYSTICK_vINIT();
     Local_FunctionStatus=E_OK;
+
     return Local_FunctionStatus;
+
 }
 /*====================================================   END_FUNCTION   ====================================================*/
 /*====================================================   Start_FUNCTION   ====================================================*/
@@ -109,9 +111,9 @@ Std_ReturnType Ultrasonic_readDistance(US_ID_t ID,f32* copy_US_reading)
         MCAL_EXTI_EnableLine(Ultrasonic[ID].Echo_pin);
         MCAL_EXTI_SetTrigger(Ultrasonic[ID].Echo_pin,EXTI_BOTH_EDGE);
         MCAL_GPIO_SetPinValue(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_LOW);
-        MCAL_SYSTICK_DelayMS(2);
+        MCAL_SYSTICK_DelayUS(2);
         MCAL_GPIO_SetPinValue(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_HIGH);
-        MCAL_SYSTICK_DelayMS(10);
+        MCAL_SYSTICK_DelayUS(10);
         MCAL_GPIO_SetPinValue(Ultrasonic[ID].Trig_port,Ultrasonic[ID].Trig_pin,GPIO_LOW);
         while(readingState == READING_PENDING)
         {
@@ -158,19 +160,19 @@ void CalcDistance()
 {
     if(echoRisingFlag == RISING_DETECTED)
     {
-        MCAL_SYSTICK_SetReloadValue(TIMER_PERIOD);
-        MCAL_SYSTICK_Start();
+        MCAL_SYSTICK_SetIntervalSingle(TIMER_PERIOD, callback_fun);
         echoRisingFlag=FALLING_DETECTED;
+
     }else
     {
         if (readingState != READING_DONE)
         {
             readingState=READING_DONE;
-            MCAL_SYSTICK_GetRemainingCounts((u32*)&distance);
+            MCAL_SYSTICK_GetElapsedCounts(&distance);
             distance*=0.017;
             MCAL_SYSTICK_Reset();
         }
-        
+
     }
 }
 void callback_fun(){

@@ -1,6 +1,6 @@
 ../Src/US_program.c:36:16:Ultrasonic_init	32	static
-../Src/US_program.c:103:16:Ultrasonic_readDistance	24	static
+../Src/US_program.c:104:16:Ultrasonic_readDistance	24	static
 ../Src/US_program.c:142:16:Ultrasonic_setRange	32	static
 ../Src/US_program.c:152:16:Ultrasonic_setState	24	static
 ../Src/US_program.c:159:6:CalcDistance	8	static
-../Src/US_program.c:179:6:callback_fun	4	static
+../Src/US_program.c:178:6:callback_fun	4	static

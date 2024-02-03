@@ -41,10 +41,10 @@ int main(void)
 	MCAL_Rcc_EnablePrephiral(RCC_APB2_IOPAEN, RCC_APB2);
 	LCD_Init();
 	Ultrasonic_init(mid, &mid_conf);
+	Ultrasonic_readDistance(mid, &distance);
+	LCD_SendIntger(distance);
 	for(;;)
 	{
-		Ultrasonic_readDistance(mid, &distance);
-		//if(distance!=0.0) LCD_SendFloat(distance);
 
 	}
 }
