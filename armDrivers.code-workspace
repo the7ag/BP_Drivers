@@ -10,7 +10,8 @@
 			"gpio_interface.h": "c",
 			"us_interface.h": "c",
 			"us_config.h": "c",
-			"lcd_private.h": "c"
+			"lcd_private.h": "c",
+			"gpt_interface.h": "c"
 		}
 	}
 }
