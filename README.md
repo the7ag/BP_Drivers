@@ -75,10 +75,6 @@ This repository contains driver libraries for various peripherals of the STM32F1
 
 ## Usage
 1. Clone the repository:
-
-
-## Usage
-1. Clone the repository:
  ```
    git clone https://github.com/MuteMotion/BP_Drivers.git
    ```
