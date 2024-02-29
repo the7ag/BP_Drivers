@@ -7,10 +7,11 @@
 #ifndef BIT_MATH_H_
 #define BIT_MATH_H_
 
-#define SET_BIT(REG , BIT_NO)       REG |=  (1 << BIT_NO)
-#define CLR_BIT(REG , BIT_NO)       REG &= ~(1 << BIT_NO)
-#define TOG_BIT(REG , BIT_NO)       REG ^=  (1 << BIT_NO)
-#define GET_BIT(REG , BIT_NO)       ((REG & (1 << BIT_NO)) >> BIT_NO)
+#define SET_BIT(REG , BIT_NO)           REG |=  (1 << BIT_NO)
+#define CLR_BIT(REG , BIT_NO)           REG &= ~(1 << BIT_NO)
+#define TOG_BIT(REG , BIT_NO)           REG ^=  (1 << BIT_NO)
+#define GET_BIT(REG , BIT_NO)           ((REG & (1 << BIT_NO)) >> BIT_NO)
+#define MOD_2BIT(REG, BIT_NO, VAL)      (REG = (REG &  ~(0x3 << BIT_NO) ) | (VAL<<BIT_NO))
 
 
 
