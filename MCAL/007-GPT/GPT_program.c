@@ -1,5 +1,5 @@
 /**
- * @file GPT_program.h
+ * @file GPT_program.c
  * @brief This file contains the private interface for the GPT module.
  *
  * @copyright Copyright (c) 2023
